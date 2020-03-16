@@ -29,4 +29,7 @@ build/
 
 ### VS Code ###
 .vscode/
-/.mvn*
+.mvn/timing.properties
+# https://github.com/takari/maven-wrapper#usage-without-binary-jar
+.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper
