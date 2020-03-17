@@ -1,15 +1,9 @@
 package edu.miu.cs.cs544.domain;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import javax.persistence.*;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
+
 public class Faculty extends Person{
     @Id
     @GeneratedValue
@@ -17,5 +11,37 @@ public class Faculty extends Person{
     private String title;
     @OneToOne
     @JoinColumn(name="person_id")
-    private Faculty faculty;
+    private Section section;
+
+    public Faculty() {
+    }
+    public Faculty(String firstName, String lastName, String userName, String password, String role, String title){
+        super(firstName, lastName, userName, password, role);
+        this.title = title;
+    }
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Section getSection() {
+        return section;
+    }
+
+    public void setSection(Section section) {
+        this.section = section;
+    }
 }

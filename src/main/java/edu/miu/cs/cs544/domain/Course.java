@@ -1,9 +1,5 @@
 package edu.miu.cs.cs544.domain;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,9 +8,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
+
 public class Course {
     @Id
     @GeneratedValue
@@ -24,4 +18,38 @@ public class Course {
     private String name;
     private String description;
 
+    public Course() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
