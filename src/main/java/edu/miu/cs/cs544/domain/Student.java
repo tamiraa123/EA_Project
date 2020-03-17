@@ -8,7 +8,7 @@ import java.util.List;
 public class Student extends Person{
     @Id
     @GeneratedValue
-    private int  id;
+    private int id;
     private int studentId;
     private String email;
 
