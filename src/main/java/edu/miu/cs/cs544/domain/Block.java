@@ -9,7 +9,7 @@ import java.util.Date;
 public class Block {
     @Id
     @GeneratedValue
-    private Long id;
+    private int id;
     @Pattern(regexp = "[0-9]{4}(-)[0-9]{2}")
     private String code;
     @Pattern(regexp = "^[a-zA-Z]+\\s[0-9]{4}$")
@@ -25,11 +25,11 @@ public class Block {
     public Block() {
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -16,7 +16,7 @@ public class BlockService {
         return blockRepository.save(block);
     }
 
-    public Block getBlock(Long blockId) {
+    public Block getBlock(int blockId) {
         return blockRepository.findById(blockId).get();
     }
 
@@ -24,22 +24,12 @@ public class BlockService {
         return blockRepository.findAll();
     }
 
-    public Block editBlock(Block block, Long blockId) {
-        return blockRepository.findById(blockId).map(b -> {
-            b.setCode(block.getCode());
-            b.setName(block.getName());
-            b.setSemester(block.getSemester());
-            b.setStartDate(block.getStartDate());
-            b.setEndDate(block.getEndDate());
-            b.setSequenceNumber(block.getSequenceNumber());
-            return blockRepository.save(b);
-        }).orElseGet( () ->{
-            block.setId(blockId);
-            return  blockRepository.save(block);
-        });
+    public Block editBlock(Block block, int blockId) {
+           block.setId(blockId);
+           return blockRepository.save(block);
     }
 
-    public void deleteBlock(Long blockId) {
+    public void deleteBlock(int blockId) {
         blockRepository.deleteById(blockId);
     }
 }

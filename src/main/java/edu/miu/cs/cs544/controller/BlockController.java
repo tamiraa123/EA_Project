@@ -8,13 +8,19 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+@RestController
 public class BlockController {
     @Autowired
     private BlockService blockService;
 
     @GetMapping("/blocks/{id}")
-    public Block getBlock(@PathVariable Long id) {
+    public Block getBlock(@PathVariable int id) {
         return blockService.getBlock(id);
+    }
+
+    @GetMapping(value = "/blocks/",params = "blockId")
+    public Block getBlock2(@RequestParam int blockId) {
+        return blockService.getBlock(blockId);
     }
 
     @GetMapping("/blocks")
@@ -27,13 +33,13 @@ public class BlockController {
         blockService.addBlock(block);
     }
 
-    @PutMapping("/blocks/{id}")
-    public Block editBlock(@Valid @RequestBody Block block, @PathVariable Long blockId) {
+    @PutMapping(value = "/blocks/", params = "blockId")
+    public Block editBlock(@Valid @RequestBody Block block, @RequestParam int blockId) {
         return blockService.editBlock(block, blockId);
     }
 
-    @DeleteMapping("/blocks/{id}")
-    public void deleteBlock(@PathVariable Long id) {
-        blockService.deleteBlock(id);
+    @DeleteMapping(value = "/blocks/", params = "blockId")
+    public void deleteBlock(@RequestParam int blockId) {
+        blockService.deleteBlock(blockId);
     }
 }
