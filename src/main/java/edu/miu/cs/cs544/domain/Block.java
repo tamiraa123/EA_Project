@@ -9,10 +9,12 @@ import java.util.Date;
 public class Block {
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
     @Pattern(regexp = "[0-9]{4}(-)[0-9]{2}")
     private String code;
+    @Pattern(regexp = "^[a-zA-Z]+\\s[0-9]{4}$")
     private String name;
+    @Pattern(regexp = "^[a-zA-Z]+$")
     private String semester;
     private int sequenceNumber;
     @Temporal(TemporalType.DATE)
@@ -23,11 +25,11 @@ public class Block {
     public Block() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
