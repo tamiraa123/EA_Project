@@ -2,6 +2,7 @@ package edu.miu.cs.cs544.domain;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Student extends Person{
@@ -32,8 +33,8 @@ public class Student extends Person{
     @ManyToOne
     private Entry entry;
 
-    @ManyToOne
-    private EnrollmentRecord enrollmentRecords;
+    @OneToMany(mappedBy = "student")
+    private List<EnrollmentRecord> enrollmentRecords;
 
     public Student() {
 
@@ -94,11 +95,11 @@ public class Student extends Person{
         this.entry = entry;
     }
 
-    public EnrollmentRecord getEnrollmentRecords() {
+    public List<EnrollmentRecord> getEnrollmentRecords() {
         return enrollmentRecords;
     }
 
-    public void setEnrollmentRecords(EnrollmentRecord enrollmentRecords) {
+    public void setEnrollmentRecords(List<EnrollmentRecord> enrollmentRecords) {
         this.enrollmentRecords = enrollmentRecords;
     }
 }

@@ -10,13 +10,11 @@ public class EnrollmentRecord {
     @GeneratedValue
     private int id;
 
-    @OneToMany
-    private List<Section> sections;
+    @ManyToOne
+    private Section section;
 
-    @OneToMany
-    private List<Student> students;
-
-
+    @ManyToOne
+    private Student student;
 
     public int getId() {
         return id;
@@ -26,21 +24,19 @@ public class EnrollmentRecord {
         this.id = id;
     }
 
-    public List<Section> getSections() {
-        return sections;
+    public Section getSection() {
+        return section;
     }
 
-    public void setSections(List<Section> sections) {
-        this.sections = sections;
+    public void setSection(Section section) {
+        this.section = section;
     }
 
-    public List<Student> getStudents() {
-        return students;
+    public Student getStudent() {
+        return student;
     }
 
-    public void setStudents(List<Student> students) {
-        this.students = students;
+    public void setStudent(Student student) {
+        this.student = student;
     }
-
-
 }

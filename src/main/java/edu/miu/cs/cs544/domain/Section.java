@@ -13,8 +13,8 @@ public class Section {
     @Pattern(regexp = "[0-9]{2}")
     private String code;
 
-    @ManyToOne
-    private EnrollmentRecord enrollmentRecord;
+    @OneToMany(mappedBy = "section")
+    private List<EnrollmentRecord> enrollmentRecords;
 
     @OneToOne
     @JoinColumn(name="person_id")
@@ -39,11 +39,19 @@ public class Section {
         this.code = code;
     }
 
-    public EnrollmentRecord getEnrollmentRecord() {
-        return enrollmentRecord;
+    public List<EnrollmentRecord> getEnrollmentRecords() {
+        return enrollmentRecords;
     }
 
-    public void setEnrollmentRecord(EnrollmentRecord enrollmentRecord) {
-        this.enrollmentRecord = enrollmentRecord;
+    public void setEnrollmentRecords(List<EnrollmentRecord> enrollmentRecords) {
+        this.enrollmentRecords = enrollmentRecords;
+    }
+
+    public Faculty getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(Faculty faculty) {
+        this.faculty = faculty;
     }
 }
