@@ -11,11 +11,9 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 public class Faculty extends Person{
-    @Id
-    @GeneratedValue
-    private int id;
+
     private String title;
-    @OneToOne
-    @JoinColumn(name="person_id")
-    private Faculty faculty;
+//    @OneToOne
+//    @JoinColumn(name="person_id")
+//    private Section faculty;
 }

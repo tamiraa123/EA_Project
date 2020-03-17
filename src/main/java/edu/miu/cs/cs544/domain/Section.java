@@ -4,11 +4,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.Pattern;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,6 +19,7 @@ public class Section {
     private int id;
     @Pattern(regexp = "[0-9]{2}")
     private String code;
-    @OneToMany(mappedBy = "section")
-    private List<Student> students;
+    @OneToMany
+    @JoinColumn(name = "student_id")
+    private List<Student> students = new ArrayList<>();
 }

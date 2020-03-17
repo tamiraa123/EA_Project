@@ -9,12 +9,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
+
 public class Course {
     @Id
     @GeneratedValue
