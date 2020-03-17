@@ -39,7 +39,7 @@ public class CourseServiceImpl implements CourseService {
     }
     @Override
     @Transactional(readOnly = true)
-    public Course getName(String name) {
+    public Optional<Course> getName(String name) {
         return courseRepository.findByName(name);
     }
     @Override

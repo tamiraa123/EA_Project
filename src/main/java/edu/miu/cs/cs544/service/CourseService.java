@@ -10,8 +10,8 @@ public interface CourseService {
     public Course add(Course course);
 
     //Read
-    public Optional get(Long courseId);
-    public Course getName(String name);
+    public Optional<Course> get(Long courseId);
+    public Optional<Course> getName(String name);
     public Course getCode(String name);
     public Iterable<Course> getAll();
 

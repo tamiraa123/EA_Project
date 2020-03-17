@@ -2,21 +2,17 @@ package edu.miu.cs.cs544.exceptions;
 
 public class NoSuchResourceException extends RuntimeException {
 
-	private long resourceId;
-	private String resourceType;
 
-	public NoSuchResourceException(String resourceType ) {
-		super();
-		this.resourceType = resourceType;
-		this.resourceId = resourceId;
+	public NoSuchResourceException(String message, Long id) {
+		super(message + " : " + id);
 	}
-	
-	public long getResourceId() {
-		return resourceId;
+
+	public NoSuchResourceException(String message, Throwable cause) {
+		super(message + " " + cause.getMessage());
 	}
-	
-	public String getResourceType() {
-		return resourceType;
+
+	public NoSuchResourceException(String message, Object object) {
+		super(message + " " + object.getClass());
 	}
 
 }
