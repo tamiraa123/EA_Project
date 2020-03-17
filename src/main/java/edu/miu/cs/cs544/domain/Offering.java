@@ -14,14 +14,18 @@ import javax.persistence.OneToOne;
 @Setter
 @NoArgsConstructor
 public class Offering {
+
     @Id
     @GeneratedValue
     private int id;
     private String code;
+
     @OneToOne
-    private Section section;
+    private  Section section;
+
     @OneToOne
-    private Course course;
+    private  Course course;
+
     @OneToOne
-    private Block block;
+    private  Block block;
 }
