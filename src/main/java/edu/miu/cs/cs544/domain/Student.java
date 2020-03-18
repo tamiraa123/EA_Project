@@ -1,6 +1,9 @@
 package edu.miu.cs.cs544.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,7 +20,7 @@ public class Student extends Person{
     @JoinColumn(name="address_mail_id")
     private Address mailingAddress;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="entry_id")
     private Entry entry;
 

@@ -22,7 +22,8 @@ public class Entry {
     @Temporal(TemporalType.DATE)
     private Date enrollmentEndDate;
 
-    @OneToMany(mappedBy="entry",cascade = CascadeType.PERSIST)
+    @JsonIgnore
+    @OneToMany(mappedBy="entry")
     private List<Student> students;
 
     public Entry() {
