@@ -1,8 +1,9 @@
 package edu.miu.cs.cs544.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+
+import javax.validation.constraints.Future;
+import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -20,17 +21,31 @@ public class Block {
     @Size(min=5, max = 20)
     private String name;
     @NotEmpty
+    @Pattern(regexp = "^[a-zA-Z]+\\s[0-9]{4}$")
+    private String name;
+    @Pattern(regexp = "^[a-zA-Z]+$")
     private String semester;
-    @NotNull
     private int sequenceNumber;
     @Temporal(TemporalType.DATE)
+    @FutureOrPresent
     private Date startDate;
+    @Future
     @Temporal(TemporalType.DATE)
     private Date endDate;
-
-    public Block() {
+    public Block(int id, @Pattern(regexp = "[0-9]{4}(-)[0-9]{2}") String code,
+                 @Pattern(regexp = "^[a-zA-Z]+\\s[0-9]{4}$") String name,
+                 @Pattern(regexp = "^[a-zA-Z]+$") String semester,
+                 int sequenceNumber,
+                 @FutureOrPresent Date startDate,
+                 @Future Date endDate) {
+        this.id = id;
+        this.code = code;
+        this.name = name;
+        this.semester = semester;
+        this.sequenceNumber = sequenceNumber;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
-
     public int getId() {
         return id;
     }
@@ -85,5 +100,18 @@ public class Block {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Block{" +
+                "id=" + id +
+                ", code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                ", semester='" + semester + '\'' +
+                ", sequenceNumber=" + sequenceNumber +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                '}';
     }
 }

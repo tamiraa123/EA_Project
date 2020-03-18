@@ -1,6 +1,8 @@
 package edu.miu.cs.cs544.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class Faculty extends Person{
@@ -8,12 +10,23 @@ public class Faculty extends Person{
     private String title;
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="person_id")
+    @NotNull
+    @Pattern(regexp="^(Student|Professor|)$", message="invalid code")
+    private String title;
+    @OneToOne
+    @JoinColumn(name="faculty_id")
     private Section section;
+
 
     public Faculty() {
     }
     public Faculty(String firstName, String lastName, String userName, String password, String role, String title){
-        super(firstName, lastName, userName, password, role);
+        super(firstName, lastName, userName, password, "FACULTY_ROLE");
+        this.title = title;
+    }
+
+
+    public Faculty(String title){
         this.title = title;
     }
 

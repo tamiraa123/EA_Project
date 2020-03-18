@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import java.util.Objects;
 
 @Entity
 public class Course {
@@ -24,7 +24,11 @@ public class Course {
 
     public Course() {
     }
-
+    public Course(String code, String name, String description) {
+        this.code = code;
+        this.name = name;
+        this.description = description;
+    }
     public int getId() {
         return id;
     }
@@ -55,5 +59,20 @@ public class Course {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Course course = (Course) o;
+        return Objects.equals(code, course.code) &&
+                Objects.equals(name, course.name) &&
+                Objects.equals(description, course.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(code, name, description);
     }
 }
