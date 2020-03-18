@@ -1,9 +1,8 @@
 package edu.miu.cs.cs544.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.Future;
-import javax.validation.constraints.FutureOrPresent;
-import javax.validation.constraints.Pattern;
+
+import javax.validation.constraints.*;
 import java.util.Date;
 
 @Entity
@@ -12,8 +11,11 @@ public class Block {
     @Id
     @GeneratedValue
     private int id;
+    @NotEmpty
     @Pattern(regexp = "[0-9]{4}(-)[0-9]{2}")
     private String code;
+
+    @NotEmpty
     @Pattern(regexp = "^[a-zA-Z]+\\s[0-9]{4}$")
     private String name;
     @Pattern(regexp = "^[a-zA-Z]+$")
@@ -25,6 +27,7 @@ public class Block {
     @Future
     @Temporal(TemporalType.DATE)
     private Date endDate;
+    public Block() {}
     public Block(int id, @Pattern(regexp = "[0-9]{4}(-)[0-9]{2}") String code,
                  @Pattern(regexp = "^[a-zA-Z]+\\s[0-9]{4}$") String name,
                  @Pattern(regexp = "^[a-zA-Z]+$") String semester,
