@@ -13,7 +13,7 @@ public class Course {
     @Id
     @GeneratedValue
     private int id;
-    @Pattern(regexp = "[A-Z]{2}[1-9]{3}")
+    @Pattern(regexp = "[A-Z]{2}[0-9]{3}")
     private String code;
     private String name;
     private String description;
