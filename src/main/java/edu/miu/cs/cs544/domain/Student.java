@@ -27,6 +27,22 @@ public class Student extends Person{
 
     }
 
+    public Student(String firstName, String lastName, String userName, String password, String role, int studentId, String email){
+        super(firstName, lastName, userName, password, "STUDENT_ROLE");
+        this.studentId = studentId;
+        this.email = email;
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getStudentId() {
         return studentId;
     }

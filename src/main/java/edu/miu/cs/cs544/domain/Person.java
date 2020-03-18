@@ -26,8 +26,19 @@ public class Person {
     private String password;
     @Pattern(regexp="^(STU|PROF|)$", message="invalid code")
     private String role;
+    private boolean enabled;
 
     public Person() {
+    }
+
+
+    public Person(String firstName, String lastName, String userName, String password, String role){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.password = password;
+        this.role = role;
+        this.enabled=true;
     }
 
     public int getId() {

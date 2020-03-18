@@ -14,7 +14,17 @@ public class Faculty extends Person{
     @JoinColumn(name="faculty_id")
     private Section section;
 
-    public Faculty(){
+
+    public Faculty() {
+    }
+    public Faculty(String firstName, String lastName, String userName, String password, String role, String title){
+        super(firstName, lastName, userName, password, "FACULTY_ROLE");
+        this.title = title;
+    }
+    @Override
+    public int getId() {
+        return id;
+
     }
 
     public Faculty(String title){

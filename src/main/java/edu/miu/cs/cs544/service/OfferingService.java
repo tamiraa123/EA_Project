@@ -7,11 +7,11 @@ import java.util.List;
 
 @Service
 public class OfferingService {
-    @Autowired
-    OfferingService offeringService;
-
-    public List<Object> EnrollmentView()
-    {
-        return offeringService.EnrollmentView();
-    }
+//    @Autowired
+//    OfferingService offeringService;
+//
+//    public List<Object> EnrollmentView()
+//    {
+//        return offeringService.EnrollmentView();
+//    }
 }
