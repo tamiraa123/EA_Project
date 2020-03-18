@@ -11,11 +11,13 @@ public class Offering {
     private int id;
     private String code;
 
-    @OneToMany
-    @JoinColumn(name="section_id")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="offering_id")
     private List<Section> sections;
-    @OneToMany
+
+    @ManyToOne
     @JoinColumn(name="course_id")
+    private Course course;
     private List<Course> courses;
     @ManyToOne
     @JoinColumn(name="block_id")
@@ -48,12 +50,16 @@ public class Offering {
         this.sections = sections;
     }
 
-    public List<Course> getCourses() {
-        return courses;
+    public Course getCourses() {
+        return course;
     }
 
-    public void setCourses(List<Course> courses) {
-        this.courses = courses;
+    public void setCourses(Course course) {
+        this.course = course;
+    }
+
+    public Block getBlocks() {
+        return block;
     }
 
     public Block getBlock() {
