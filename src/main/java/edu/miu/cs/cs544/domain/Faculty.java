@@ -1,17 +1,19 @@
 package edu.miu.cs.cs544.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
-
 public class Faculty extends Person{
-    @Id
-    @GeneratedValue
-    private int id;
+
+    @NotNull
+    @Pattern(regexp="^(Student|Professor|)$", message="invalid code")
     private String title;
     @OneToOne
-    @JoinColumn(name="person_id")
+    @JoinColumn(name="faculty_id")
     private Section section;
+
 
     public Faculty() {
     }
@@ -22,11 +24,11 @@ public class Faculty extends Person{
     @Override
     public int getId() {
         return id;
+
     }
 
-    @Override
-    public void setId(int id) {
-        this.id = id;
+    public Faculty(String title){
+        this.title = title;
     }
 
     public String getTitle() {
