@@ -37,10 +37,10 @@ public class CourseController {
         return courseService.getAll();
     }
 
-    @DeleteMapping("/{name}")
+    @DeleteMapping("/{id}")
     //@Secured(value = {"ROLE_ADMIN"})
-    public Course deleteCourse(@PathVariable String name) {
-        return courseService.getName(name).map(c -> {
+    public Course deleteCourse(@PathVariable int id) {
+        return courseService.get((long)id).map(c -> {
             courseService.delete(c);
             return c;
         }).orElse(null);
