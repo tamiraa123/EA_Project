@@ -17,9 +17,9 @@ public class Offering {
     @OneToMany
     @JoinColumn(name="course_id")
     private List<Course> courses;
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name="block_id")
-    private List<Block> blocks;
+    private Block block;
 
     public Offering() {
     }
@@ -56,11 +56,11 @@ public class Offering {
         this.courses = courses;
     }
 
-    public List<Block> getBlocks() {
-        return blocks;
+    public Block getBlock() {
+        return block;
     }
 
-    public void setBlocks(List<Block> blocks) {
-        this.blocks = blocks;
+    public void setBlock(Block block) {
+        this.block = block;
     }
 }
