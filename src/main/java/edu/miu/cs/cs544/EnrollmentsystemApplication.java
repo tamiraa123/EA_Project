@@ -1,10 +1,10 @@
 package edu.miu.cs.cs544;
 
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.security.access.annotation.Secured;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
@@ -13,10 +13,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EntityScan("edu.miu.cs.cs544.domain")
 @EnableSwagger2
 public class EnrollmentsystemApplication {
-
 	public static void main(String[] args) {
 
 		SpringApplication.run(EnrollmentsystemApplication.class, args);
+
 	}
-	//@Secured({ "ROLE_VIEWER", "ROLE_EDITOR" })
 }
