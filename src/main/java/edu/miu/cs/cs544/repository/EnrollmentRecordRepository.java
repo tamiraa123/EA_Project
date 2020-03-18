@@ -27,7 +27,7 @@ public interface EnrollmentRecordRepository extends JpaRepository<EnrollmentReco
     @Query("select new edu.miu.cs.cs544.domain.EnrollmentStudent(b.id,b.code,b.name,b.semester,b.startDate," +
             "b.endDate,c.id,c.code,c.name,c.description,f.id,f.title,s.id, ss.firstName,ss.lastName,ss.studentId ) " +
             "from Offering o join o.sections s join s.faculty f join o.block b join o.course c " +
-            "join s.enrollmentRecords e join e.student ss where ss.id=:facultyId")
-    List<EnrollmentStudent>  EnrollmentViewFaculty(int facultyId);
+            "join s.enrollmentRecords e join e.student ss where ss.id=:facultyId AND b.id=:blockId")
+    List<EnrollmentStudent>  EnrollmentViewFaculty(int facultyId,int blockId);
 
 }

@@ -3,13 +3,10 @@ package edu.miu.cs.cs544.domain;
 import javax.persistence.*;
 
 @Entity
-
 public class Faculty extends Person{
-    @Id
-    @GeneratedValue
-    private int id;
+
     private String title;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="person_id")
     private Section section;
 
@@ -18,15 +15,6 @@ public class Faculty extends Person{
     public Faculty(String firstName, String lastName, String userName, String password, String role, String title){
         super(firstName, lastName, userName, password, role);
         this.title = title;
-    }
-    @Override
-    public int getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getTitle() {

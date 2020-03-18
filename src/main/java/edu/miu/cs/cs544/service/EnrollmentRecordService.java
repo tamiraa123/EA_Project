@@ -35,9 +35,9 @@ public class EnrollmentRecordService {
         return enrollmentRecordRepository.EnrollmentViewStudent(studentId);
     }
 
-    public List<EnrollmentStudent>  EnrollmentFaculty(int facultyId)
+    public List<EnrollmentStudent>  EnrollmentFaculty(int facultyId,int blockId)
     {
-        return enrollmentRecordRepository.EnrollmentViewFaculty(facultyId);
+        return enrollmentRecordRepository.EnrollmentViewFaculty(facultyId, blockId);
     }
 
 
@@ -54,13 +54,9 @@ public class EnrollmentRecordService {
 //        }
         return "SUCCESS";
     }
-    public void editEnroll(EnrollmentRecord enrollmentRecord) {
-//        Optional<Student> rollStudent = studentRepository.findById(enrollmentRecord.getStudent().getId());
-//        Optional<Section> rollSection = sectionRepository.findById(enrollmentRecord.getSection().getId());
-      //  if (rollStudent.isPresent() && rollSection.isPresent()) {
-
-            enrollmentRecordRepository.save(enrollmentRecord);
-       // }
+    public void editEnroll(EnrollmentRecord enrollmentRecord,int id) {
+                enrollmentRecord.setId(id);
+                enrollmentRecordRepository.save(enrollmentRecord);
     }
     public void deleteEnroll(EnrollmentRecord enrollmentRecord) {
             enrollmentRecordRepository.delete(enrollmentRecord);

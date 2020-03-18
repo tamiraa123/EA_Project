@@ -1,5 +1,7 @@
 package edu.miu.cs.cs544.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -13,12 +15,14 @@ public class Section {
     @Id
     @GeneratedValue
     private int id;
-    @Pattern(regexp = "[0-9]{2}")
-    private String code;
 
-    @OneToMany(mappedBy = "section",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @Pattern(regexp = "[A-Z]{2}[0-9]{3}(-)[0-9]{4}(-)[0-9]{2}(-)[0-9]{2}")
+    private String code;
+    @JsonIgnore
+    @OneToMany(mappedBy = "section")
     private List<EnrollmentRecord> enrollmentRecords;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name="person_id")
     private Faculty faculty;

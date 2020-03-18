@@ -23,34 +23,31 @@ public class EnrollmentRecordController {
     }
 
     //Faculty
-    @RequestMapping(value="/faculty/{facultyId}/enrollments?block={blockid}",method = RequestMethod.GET)
-    public List<EnrollmentStudent>  getEnrollmentFaculty(@PathVariable int facultyId)
+    @RequestMapping(value="/faculty/{facultyId}/enrollments/{blockid}",method = RequestMethod.GET)
+    public List<EnrollmentStudent>  getEnrollmentFaculty(@PathVariable int facultyId, @PathVariable int blockid)
     {
-        return enrollmentRecordService.EnrollmentFaculty(facultyId);
+        return enrollmentRecordService.EnrollmentFaculty(facultyId,blockid);
     }
 
     //Student
-    @RequestMapping(value="/getEnrollmentStudent/{studentId}",method = RequestMethod.GET)
+    @RequestMapping(value="student/enrollments/{studentId}",method = RequestMethod.GET)
     public List<Enrollment>  getEnrollmentStudent(@PathVariable int studentId)
     {
         return enrollmentRecordService.EnrollmentStudent(studentId);
     }
 
-    @RequestMapping(value="/enrollCourse",method = RequestMethod.POST)
+    @RequestMapping(value="/",method = RequestMethod.POST)
     public String EnrollCourse(@RequestBody EnrollmentRecord enrollmentRecord) {
-//         if(enrollmentRecord.size()>4)
-//            return "FAIL";
-//         else
             return enrollmentRecordService.Enroll(enrollmentRecord);
     }
 
 
-    @RequestMapping(value="/editEnrollCourse",method = RequestMethod.PATCH)
-    public void editEnrollCourse(@RequestBody EnrollmentRecord enrollmentRecord) {
-        enrollmentRecordService.editEnroll(enrollmentRecord);
+    @RequestMapping(value="/{id}",method = RequestMethod.PATCH)
+    public void editEnrollCourse(@RequestBody EnrollmentRecord enrollmentRecord,@PathVariable int id) {
+        enrollmentRecordService.editEnroll(enrollmentRecord,id);
     }
 
-    @RequestMapping(value="/deleteEnrollCourse",method = RequestMethod.POST)
+    @RequestMapping(value="/",method = RequestMethod.DELETE)
     public void deleteEnrollCourse(@RequestBody EnrollmentRecord enrollmentRecord) {
         enrollmentRecordService.deleteEnroll(enrollmentRecord);
     }
