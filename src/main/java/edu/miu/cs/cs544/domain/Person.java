@@ -14,6 +14,7 @@ public class Person {
     private String userName;
     private String password;
     private String role;
+    private boolean enabled;
 
     public Person() {
     }
@@ -24,6 +25,7 @@ public class Person {
         this.userName = userName;
         this.password = password;
         this.role = role;
+        this.enabled=true;
     }
 
     public int getId() {
