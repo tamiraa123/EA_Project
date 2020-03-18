@@ -14,7 +14,9 @@ public class Admin extends Person{
 
     public Admin() {
     }
-
+    public Admin(String firstName, String lastName, String userName, String password, String role){
+        super(firstName, lastName, userName, password, "ADMIN_ROLE");
+    }
     @Override
     public int getId() {
         return id;
