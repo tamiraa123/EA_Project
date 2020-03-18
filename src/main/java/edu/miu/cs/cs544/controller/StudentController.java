@@ -1,7 +1,9 @@
 package edu.miu.cs.cs544.controller;
 
+import edu.miu.cs.cs544.domain.Entry;
 import edu.miu.cs.cs544.domain.Person;
 import edu.miu.cs.cs544.domain.Student;
+import edu.miu.cs.cs544.service.EntryService;
 import edu.miu.cs.cs544.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,11 +19,17 @@ public class StudentController {
     @Autowired
     PersonService studentService;
 
-    @RequestMapping(value="/",method = RequestMethod.POST)
-    public String addStudent(@RequestBody Student student) {
+    @Autowired
+    EntryService entryService;
+
+    @RequestMapping(value="/{eId}",method = RequestMethod.POST)
+    public String addStudent(@RequestBody Student student, @PathVariable int eId) {
+        Entry entry = entryService.getEntry(eId);
+        student.setEntry(entry);
         studentService.addPerson(student);
         return "Success";
     }
+
     @RequestMapping(value="/", method = RequestMethod.DELETE)
     public String removeStudent(@RequestBody Student student){
         return studentService.removePerson(student.getId());

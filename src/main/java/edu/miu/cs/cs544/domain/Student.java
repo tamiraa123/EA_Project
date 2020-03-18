@@ -17,7 +17,8 @@ public class Student extends Person{
     @JoinColumn(name="address_mail_id")
     private Address mailingAddress;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="entry_id")
     private Entry entry;
 
     @ManyToOne

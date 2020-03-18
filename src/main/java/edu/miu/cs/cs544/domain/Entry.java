@@ -2,6 +2,8 @@ package edu.miu.cs.cs544.domain;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -10,6 +12,7 @@ import java.util.List;
 
 public class Entry {
     @Id
+    @GeneratedValue
     private int id;
     private String name;
     @Temporal(TemporalType.DATE)
@@ -19,7 +22,7 @@ public class Entry {
     @Temporal(TemporalType.DATE)
     private Date enrollmentEndDate;
 
-    @OneToMany(mappedBy="entry")
+    @OneToMany(mappedBy="entry",cascade = CascadeType.PERSIST)
     private List<Student> students;
 
     public Entry() {
@@ -33,9 +36,7 @@ public class Entry {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
     public void setName(String name) {
         this.name = name;

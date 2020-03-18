@@ -15,8 +15,7 @@ public class FacultyController {
     @Autowired
     PersonService facultyService;
 
-    private String countryCode;
-    @RequestMapping(value="/",method = RequestMethod.POST)
+    @RequestMapping(value="/", method = RequestMethod.POST)
     public String addFaculty(@RequestBody Faculty faculty) {
         facultyService.addPerson(faculty);
         return "Success";
