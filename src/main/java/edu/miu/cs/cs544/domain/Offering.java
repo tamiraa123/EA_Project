@@ -56,13 +56,8 @@ public class Offering {
 
     public void setCourse(Course course) {
         this.course = course;
-    public Course getCourses() {
-        return course;
     }
 
-    public void setCourses(Course course) {
-        this.course = course;
-    }
 
     public Block getBlocks() {
         return block;

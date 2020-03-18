@@ -41,13 +41,7 @@ public class Student extends Person implements Serializable {
         this.enrollmentRecords = enrollmentRecords;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getStudentId() {
         return studentId;
@@ -89,11 +83,11 @@ public class Student extends Person implements Serializable {
         this.entry = entry;
     }
 
-    public EnrollmentRecord getEnrollmentRecords() {
+    public List<EnrollmentRecord> getEnrollmentRecords() {
         return enrollmentRecords;
     }
 
-    public void setEnrollmentRecords(EnrollmentRecord enrollmentRecords) {
+    public void setEnrollmentRecords(List<EnrollmentRecord> enrollmentRecords) {
         this.enrollmentRecords = enrollmentRecords;
     }
 

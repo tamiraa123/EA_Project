@@ -7,15 +7,14 @@ import javax.validation.constraints.Pattern;
 @Entity
 public class Faculty extends Person{
 
-    private String title;
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="person_id")
+    private Section section;
+
     @NotNull
     @Pattern(regexp="^(Student|Professor|)$", message="invalid code")
     private String title;
-    @OneToOne
-    @JoinColumn(name="faculty_id")
-    private Section section;
+
 
 
     public Faculty() {
