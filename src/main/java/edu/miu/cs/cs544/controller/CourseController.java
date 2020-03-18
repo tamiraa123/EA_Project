@@ -22,7 +22,7 @@ public class CourseController {
     }
     @PostMapping
    // @Secured(value = {"ROLE_ADMIN"})
-    public ResponseEntity<Object> addNewCourse(@RequestBody @Valid Course course) {
+    public ResponseEntity<Object> addCourse(@RequestBody @Valid Course course) {
         courseService.add(course);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -33,13 +33,12 @@ public class CourseController {
     }
 
     @GetMapping
-    public Iterable<Course> all() {
+    public Iterable<Course> getAllCourse() {
         return courseService.getAll();
     }
 
     @DeleteMapping("/{name}")
     //@Secured(value = {"ROLE_ADMIN"})
-   // @JsonView(Course.DetailView.class)
     public Course deleteCourse(@PathVariable String name) {
         return courseService.getName(name).map(c -> {
             courseService.delete(c);
@@ -49,7 +48,6 @@ public class CourseController {
 
     @PutMapping("/{name}")
     //@Secured(value = {"ROLE_ADMIN"})
-   // @JsonView(Course.DetailView.class)
     public Course updateCourse(@PathVariable String name, @RequestBody @Valid Course newCourse) {
         Course oldCourse = courseService.getName(name).orElse(newCourse);
         oldCourse.setName(newCourse.getName());
@@ -58,8 +56,7 @@ public class CourseController {
     }
 
     @GetMapping("/{name}")
-    //@JsonView(Course.DetailView.class)
-    public Course findCourseByName(@PathVariable String name) {
+    public Course getCourse(@PathVariable String name) {
         return courseService.getName(name).orElseThrow(() ->
                 new NoSuchResourceException(name, Course.class));
     }
