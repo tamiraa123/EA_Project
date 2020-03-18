@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class FacultyService {
+public class PersonService {
     @Autowired
     PersonRepository personRepository;
 

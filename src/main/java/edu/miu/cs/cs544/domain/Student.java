@@ -2,39 +2,26 @@ package edu.miu.cs.cs544.domain;
 
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class Student extends Person{
-    @Id
-    @GeneratedValue
-    private int  id;
+
     private int studentId;
     private String email;
 
-
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="address_home_id")
     private Address homeAddress;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="address_mail_id")
     private Address mailingAddress;
-//    @Embedded
-//    @AttributeOverrides(value={
-//            @AttributeOverride( name = "id", column = @Column(name = "mailing_id")),
-//            @AttributeOverride( name = "street", column = @Column(name = "mailing_street")),
-//            @AttributeOverride( name = "city", column = @Column(name = "mailing_city")),
-//            @AttributeOverride( name = "postalCode", column = @Column(name = "mailing_postalCode")),
-//            @AttributeOverride( name = "country", column = @Column(name = "mailing_country")),
-//    })
-//    private Address mailingAddress;
 
     @ManyToOne
     private Entry entry;
 
-    @OneToMany(mappedBy = "student")
-    private List<EnrollmentRecord> enrollmentRecords;
+    @ManyToOne
+    private EnrollmentRecord enrollmentRecords;
 
     public Student() {
 
@@ -43,16 +30,6 @@ public class Student extends Person{
         super(firstName, lastName, userName, password, "STUDENT_ROLE");
         this.studentId = studentId;
         this.email = email;
-    }
-
-    @Override
-    public int getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getStudentId() {
@@ -95,11 +72,11 @@ public class Student extends Person{
         this.entry = entry;
     }
 
-    public List<EnrollmentRecord> getEnrollmentRecords() {
+    public EnrollmentRecord getEnrollmentRecords() {
         return enrollmentRecords;
     }
 
-    public void setEnrollmentRecords(List<EnrollmentRecord> enrollmentRecords) {
+    public void setEnrollmentRecords(EnrollmentRecord enrollmentRecords) {
         this.enrollmentRecords = enrollmentRecords;
     }
 }

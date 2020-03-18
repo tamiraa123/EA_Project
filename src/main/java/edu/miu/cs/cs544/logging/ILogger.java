@@ -1,5 +1,5 @@
-package cs544.exercise13_2.bank.logging;
+package edu.miu.cs.cs544.logging;
 
 public interface ILogger {
-    public void log (String logstring);
+    public void log(String logstring);
 }
