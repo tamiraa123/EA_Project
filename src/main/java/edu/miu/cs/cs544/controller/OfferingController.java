@@ -12,14 +12,14 @@ import java.util.List;
 @RestController
 @RequestMapping(value="offering")
 public class OfferingController {
-    @Autowired
-    OfferingService offeringService;
-
-    @RequestMapping(value="/getEnrollmentView",method = RequestMethod.GET)
-    public List<Object> getEnrollmentView()
-    {
-       return offeringService.EnrollmentView();
-    }
+//    @Autowired
+//    OfferingService offeringService;
+//
+//    @RequestMapping(value="/getEnrollmentView",method = RequestMethod.GET)
+//    public List<Object> getEnrollmentView()
+//    {
+//       return offeringService.EnrollmentView();
+//    }
 
 
 }

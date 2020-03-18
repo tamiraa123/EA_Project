@@ -40,7 +40,7 @@ public class Student extends Person{
 
     }
     public Student(String firstName, String lastName, String userName, String password, String role, int studentId, String email){
-        super(firstName, lastName, userName, password, role);
+        super(firstName, lastName, userName, password, "STUDENT_ROLE");
         this.studentId = studentId;
         this.email = email;
     }
