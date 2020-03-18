@@ -18,7 +18,7 @@ public class Offering {
     @ManyToOne
     @JoinColumn(name="course_id")
     private Course course;
-    private List<Course> courses;
+
     @ManyToOne
     @JoinColumn(name="block_id")
     private Block block;
@@ -50,13 +50,14 @@ public class Offering {
         this.sections = sections;
     }
 
-    public Course getCourses() {
+    public Course getCourse() {
         return course;
     }
 
-    public void setCourses(Course course) {
+    public void setCourse(Course course) {
         this.course = course;
     }
+
 
     public Block getBlocks() {
         return block;
