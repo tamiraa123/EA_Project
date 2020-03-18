@@ -9,14 +9,14 @@ import javax.persistence.Id;
 @Entity
 public class Address {
     @Id
+    @GeneratedValue
     private int id;
     private String street;
     private String city;
     private String postalCode;
     private String country;
 
-    public Address() {
-    }
+    public Address() { }
 
     public int getId() {
         return id;

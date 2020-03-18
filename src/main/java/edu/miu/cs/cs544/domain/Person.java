@@ -2,6 +2,9 @@ package edu.miu.cs.cs544.domain;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -9,21 +12,22 @@ public class Person {
     @Id
     @GeneratedValue
     private int id;
+
+    @NotNull
+    @Size(min=2, max=40)
     private String firstName;
+    @NotNull
+    @Size(min=2, max=40)
     private String lastName;
+    @NotNull
+    @Size(min=2, max=20)
     private String userName;
+    @NotNull
     private String password;
+    @Pattern(regexp="^(STU|PROF|)$", message="invalid code")
     private String role;
 
     public Person() {
-    }
-
-    public Person(String firstName, String lastName, String userName, String password, String role){
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.userName = userName;
-        this.password = password;
-        this.role = role;
     }
 
     public int getId() {

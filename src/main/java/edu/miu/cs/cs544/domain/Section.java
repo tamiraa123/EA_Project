@@ -16,8 +16,7 @@ public class Section {
     @OneToMany(mappedBy = "section")
     private List<EnrollmentRecord> enrollmentRecords;
 
-    @OneToOne
-    @JoinColumn(name="person_id")
+    @OneToOne(mappedBy = "section")
     private Faculty faculty;
 
     public Section() {
