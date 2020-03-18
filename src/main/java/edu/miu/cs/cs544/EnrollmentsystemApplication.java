@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.access.annotation.Secured;
 
 @SpringBootApplication
 @EnableJpaRepositories("edu.miu.cs.cs544.repository")
@@ -14,5 +15,5 @@ public class EnrollmentsystemApplication {
 
 		SpringApplication.run(EnrollmentsystemApplication.class, args);
 	}
-
+	//@Secured({ "ROLE_VIEWER", "ROLE_EDITOR" })
 }

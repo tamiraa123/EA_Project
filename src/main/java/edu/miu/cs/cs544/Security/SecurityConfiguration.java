@@ -24,10 +24,10 @@ import javax.sql.DataSource;
         prePostEnabled = true,
 //        The securedEnabled property determines if the @Secured annotation should be enabled
 
-        securedEnabled = true,
-
+        securedEnabled = true
 //        The jsr250Enabled property allows us to use the @RoleAllowed annotation
-        jsr250Enabled = true)
+//        ,jsr250Enabled = true
+)
 
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
