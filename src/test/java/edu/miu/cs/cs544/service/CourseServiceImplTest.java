@@ -43,8 +43,8 @@ class CourseServiceImplTest {
     @Test
     void get() {
        Optional<Course> expected = Optional.ofNullable(course);
-        when(courseRepository.findById(1L)).thenReturn(java.util.Optional.ofNullable(course));
-        assertEquals( courseService.get(1L),expected);
+        when(courseRepository.findById(1)).thenReturn(java.util.Optional.ofNullable(course));
+        assertEquals( courseService.get(1),expected);
     }
 
     @Test
