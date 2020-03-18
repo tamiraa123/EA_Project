@@ -28,10 +28,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class CourseControllerTest {
 
     @Autowired
-    private MockMvc mvc;
+    private MockMvc mockMvc;
 
     @MockBean
-    private CourseService service;
+    private CourseService courseService;
     private ObjectMapper objectMapper;
 
     public static String asJsonString(final Object obj) {
@@ -56,7 +56,7 @@ class CourseControllerTest {
     @Test
     void addCourse() throws Exception {
 
-        mvc.perform(MockMvcRequestBuilders
+        mockMvc.perform(MockMvcRequestBuilders
                 .post("/course")
                 .content(asJsonString(mockedCourses.get(1)))
                 .contentType(MediaType.APPLICATION_JSON)
@@ -76,9 +76,9 @@ class CourseControllerTest {
 
     @Test
     void getAllCourse() throws Exception {
-        when(service.getAll()).thenReturn(mockedCourses);
+        when(courseService.getAll()).thenReturn(mockedCourses);
 
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders
                 .get("/course")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
@@ -94,27 +94,27 @@ class CourseControllerTest {
 
     @Test
     void deleteCourse() throws Exception {
-        when(service.getName(mockedCourses.get(1).getName())).thenReturn(java.util.Optional.ofNullable(mockedCourses.get(1)));
-        doNothing().when(service).delete(mockedCourses.get(1));
+        when(courseService.getName(mockedCourses.get(1).getName())).thenReturn(java.util.Optional.ofNullable(mockedCourses.get(1)));
+        doNothing().when(courseService).delete(mockedCourses.get(1));
 
-        mvc.perform(MockMvcRequestBuilders
+        mockMvc.perform(MockMvcRequestBuilders
                 .delete("/course/{name}", mockedCourses.get(1).getName())
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
               ) .andExpect(status().isOk());
 
-        verify(service, times(1)).getName(mockedCourses.get(1).getName());
-        verify(service, times(1)).delete(mockedCourses.get(1));
-        verifyNoMoreInteractions(service);
+        verify(courseService, times(1)).getName(mockedCourses.get(1).getName());
+        verify(courseService, times(1)).delete(mockedCourses.get(1));
+        verifyNoMoreInteractions(courseService);
 
     }
 
     @Test
     void updateCourse() throws Exception {
-        when(service.getName("EA")).thenReturn(Optional.of(mockedCourses.get(0)));
-        when(service.update(any(Course.class))).thenReturn(null);
+        when(courseService.getName("EA")).thenReturn(Optional.of(mockedCourses.get(0)));
+        when(courseService.update(any(Course.class))).thenReturn(null);
 
-        mvc.perform(MockMvcRequestBuilders
+        mockMvc.perform(MockMvcRequestBuilders
                 .put("/course/EA")
                 .content(asJsonString(mockedCourses.get(0)))
                 .contentType(MediaType.APPLICATION_JSON)
@@ -123,18 +123,18 @@ class CourseControllerTest {
 
         //Course returnedCourse = objectMapper.readValue(mvcResult.getResponse().getContentAsString(), Course.class);
 
-        verify(service, times(1)).getName(mockedCourses.get(0).getName());
-        verify(service, times(1)).update(mockedCourses.get(0));
+        verify(courseService, times(1)).getName(mockedCourses.get(0).getName());
+        verify(courseService, times(1)).update(mockedCourses.get(0));
         //assertThat(returnedCourse).isInstanceOf(Course.class);
 
-        verifyNoMoreInteractions(service);
+        verifyNoMoreInteractions(courseService);
     }
 
     @Test
     void getCourse() throws Exception {
-        when(service.getName("FPP")).thenReturn(Optional.of(mockedCourses.get(2)));
+        when(courseService.getName("FPP")).thenReturn(Optional.of(mockedCourses.get(2)));
 
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders
                 .get("/course/FPP")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))

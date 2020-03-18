@@ -12,7 +12,7 @@ import java.util.Objects;
 public class Course {
     @Id
     @GeneratedValue
-    private int id;
+    private long id;
     @Pattern(regexp = "[A-Z]{2}[0-9]{3}")
     private String code;
     private String name;
@@ -25,11 +25,11 @@ public class Course {
         this.name = name;
         this.description = description;
     }
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
