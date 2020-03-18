@@ -7,6 +7,9 @@ import javax.validation.constraints.Pattern;
 @Entity
 public class Faculty extends Person{
 
+    private String title;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="person_id")
     @NotNull
     @Pattern(regexp="^(Student|Professor|)$", message="invalid code")
     private String title;
@@ -21,11 +24,7 @@ public class Faculty extends Person{
         super(firstName, lastName, userName, password, "FACULTY_ROLE");
         this.title = title;
     }
-    @Override
-    public int getId() {
-        return id;
 
-    }
 
     public Faculty(String title){
         this.title = title;

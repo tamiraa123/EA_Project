@@ -2,9 +2,11 @@ package edu.miu.cs.cs544.domain;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
 @Entity
-public class Student extends Person{
+public class Student extends Person implements Serializable {
 
     private int studentId;
     private String email;
@@ -20,25 +22,29 @@ public class Student extends Person{
     @ManyToOne
     private Entry entry;
 
-    @ManyToOne
-    private EnrollmentRecord enrollmentRecords;
+    @OneToMany(mappedBy = "student",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<EnrollmentRecord> enrollmentRecords;
+
 
     public Student() {
 
     }
 
+
     public Student(String firstName, String lastName, String userName, String password, String role, int studentId, String email){
         super(firstName, lastName, userName, password, "STUDENT_ROLE");
         this.studentId = studentId;
         this.email = email;
+        this.homeAddress = homeAddress;
+        this.mailingAddress = mailingAddress;
+        this.entry = entry;
+        this.enrollmentRecords = enrollmentRecords;
     }
 
-    @Override
     public int getId() {
         return id;
     }
 
-    @Override
     public void setId(int id) {
         this.id = id;
     }
@@ -90,4 +96,6 @@ public class Student extends Person{
     public void setEnrollmentRecords(EnrollmentRecord enrollmentRecords) {
         this.enrollmentRecords = enrollmentRecords;
     }
+
+
 }
