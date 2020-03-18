@@ -16,32 +16,6 @@ import java.util.List;
 @RestController
 @RequestMapping(value="offering")
 public class OfferingController {
-    @Autowired
-    OfferingService offeringService;
 
-    @RequestMapping(value="/getEnrollmentAdmin",method = RequestMethod.GET)
-    public List<Enrollment>  getEnrollmentAdmin()
-    {
-        return offeringService.EnrollmentAdmin();
-    }
-
-    @RequestMapping(value="/getEnrollmentFaculty",method = RequestMethod.GET)
-    public List<Enrollment>  getEnrollmentFaculty()
-    {
-        return offeringService.EnrollmentFaculty();
-    }
-
-    //Student
-    @RequestMapping(value="/getEnrollmentStudent",method = RequestMethod.GET)
-    public List<Enrollment>  getEnrollmentStudent()
-    {
-        return offeringService.EnrollmentStudent();
-    }
-
-    @RequestMapping(value="/enrollCourse",method = RequestMethod.POST)
-    public void EnrollCourse(List<Section> sections, Student student)
-    {
-
-    }
 
 }

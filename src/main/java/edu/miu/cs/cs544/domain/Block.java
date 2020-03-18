@@ -1,7 +1,10 @@
 package edu.miu.cs.cs544.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -10,10 +13,15 @@ public class Block {
     @Id
     @GeneratedValue
     private int id;
+    @NotEmpty
     @Pattern(regexp = "[0-9]{4}(-)[0-9]{2}")
     private String code;
+    @NotEmpty
+    @Size(min=5, max = 20)
     private String name;
+    @NotEmpty
     private String semester;
+    @NotNull
     private int sequenceNumber;
     @Temporal(TemporalType.DATE)
     private Date startDate;

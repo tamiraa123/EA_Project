@@ -1,7 +1,10 @@
 package edu.miu.cs.cs544.domain;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
@@ -13,7 +16,7 @@ public class Section {
     @Pattern(regexp = "[0-9]{2}")
     private String code;
 
-    @OneToMany(mappedBy = "section")
+    @OneToMany(mappedBy = "section",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<EnrollmentRecord> enrollmentRecords;
 
     @OneToOne
@@ -21,6 +24,13 @@ public class Section {
     private Faculty faculty;
 
     public Section() {
+
+    }
+
+    public Section(String code, List<EnrollmentRecord> enrollmentRecords, Faculty faculty) {
+        this.code = code;
+        this.enrollmentRecords = enrollmentRecords;
+        this.faculty = faculty;
     }
 
     public int getId() {
@@ -44,6 +54,10 @@ public class Section {
     }
 
     public void setEnrollmentRecords(List<EnrollmentRecord> enrollmentRecords) {
+        for (EnrollmentRecord enrollment: enrollmentRecords
+             ) {
+            enrollment.setSection(this);
+        }
         this.enrollmentRecords = enrollmentRecords;
     }
 
