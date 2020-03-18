@@ -13,21 +13,34 @@ public class PersonService {
     @Autowired
     PersonRepository personRepository;
 
-    public void addFaculty(Person faculty){
-        personRepository.save(faculty);
+    public void addPerson(Person person){
+        personRepository.save(person);
     }
-    public void removeFaculty(int id){
-        personRepository.deleteById(id);
+    public String removePerson(int id){
+        if(personRepository.findById(id).isPresent()) {
+            personRepository.deleteById(id);
+            return "SUCCESS";
+        }else{
+            return "VALUE IS NOT FOUND";
+        }
     }
-    public void editFaculty(Person faculty){ personRepository.save(faculty); }
-    public void editFacultyWitId(Person faculty, Integer id){
-        faculty.setId(id);
-        personRepository.save(faculty);
+    public String editPerson(Person person, Integer id){
+
+        if(personRepository.findById(id).isPresent()){
+            person.setId(id);
+            personRepository.save(person);
+            return "SUCCESS";
+        }else {
+            return "VALUE IS NOT FOUND";
+        }
+
     }
-    public Person getFaculty(int id){
-        return personRepository.findById(id).get();
+    public Person getPerson(int id){
+        if(personRepository.findById(id).isPresent()) {
+            return personRepository.findById(id).get();
+        }
+        return null;
     }
-    public List<Person> getFacultyList(){
-        return personRepository.findAll();
-    }
+
+    public List<Person> getFacultyList(){ return personRepository.findAll(); }
 }

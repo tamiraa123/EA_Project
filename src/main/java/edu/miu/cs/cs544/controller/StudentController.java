@@ -1,12 +1,12 @@
 package edu.miu.cs.cs544.controller;
 
-import edu.miu.cs.cs544.domain.Faculty;
 import edu.miu.cs.cs544.domain.Person;
 import edu.miu.cs.cs544.domain.Student;
 import edu.miu.cs.cs544.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,29 +17,38 @@ public class StudentController {
     @Autowired
     PersonService studentService;
 
-    @RequestMapping(value="/add",method = RequestMethod.POST)
+    @RequestMapping(value="/",method = RequestMethod.POST)
     public String addStudent(@RequestBody Student student) {
-        studentService.addFaculty(student);
+        studentService.addPerson(student);
         return "Success";
     }
-    @RequestMapping(value="/remove/{id}", method = RequestMethod.GET)
-    public String removeStudent(@PathVariable int id){
-        studentService.removeFaculty(id);
-        return "Success";
-    }
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String editFaculty(@RequestBody Student student){
-        studentService.editFaculty(student);
-        return "Success";
+    @RequestMapping(value="/", method = RequestMethod.DELETE)
+    public String removeStudent(@RequestBody Student student){
+        return studentService.removePerson(student.getId());
     }
 
-    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public String editStudent(@RequestBody Student student, @PathVariable int id){
+            return studentService.editPerson(student,id);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Person getStudent(@PathVariable int id){
-        return studentService.getFaculty(id);
+        return studentService.getPerson(id);
     }
 
     @RequestMapping(value = "/students", method = RequestMethod.GET)
     public List<Person> getStudentList(){
-        return studentService.getFacultyList();
+
+        List<Person> students = new ArrayList<>();
+        List<Person> list = studentService.getFacultyList();
+
+        for(Person student: list){
+                if(student.getRole().equals("STU")){
+                    students.add(student);
+                }
+        }
+
+        return students;
     }
 }
