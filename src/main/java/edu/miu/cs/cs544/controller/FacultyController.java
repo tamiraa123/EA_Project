@@ -40,7 +40,9 @@ public class FacultyController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public String editFaculty(@RequestBody Faculty faculty, @PathVariable int id){
-            return facultyService.editPerson(faculty,id);
+        Faculty fac = new Faculty(faculty.getFirstName(),faculty.getLastName(),
+                faculty.getUserName(),faculty.getPassword(),faculty.getRole(),faculty.getTitle());
+            return facultyService.editPerson(fac,id);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -55,11 +57,11 @@ public class FacultyController {
         List<Person> list = facultyService.getFacultyList();
 
         for(Person faculty: list){
-                if(faculty.getRole().equals("ROLE_FACULTY")){
+                if(faculty.getRole().equals("ROLE_FACULTY") && list != null){
                     faculties.add(faculty);
                 }
         }
 
-        return list;
+        return faculties;
     }
 }

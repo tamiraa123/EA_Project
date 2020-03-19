@@ -14,8 +14,7 @@ public class PersonService {
     PersonRepository personRepository;
 
     public void addPerson(Person person){
-
-//        Person p = new Person(person.getFirstName(),person.getLastName(),person.getUserName(),person.getPassword());
+        
         personRepository.save(person);
     }
     public String removePerson(int id){

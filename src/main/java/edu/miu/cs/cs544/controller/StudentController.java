@@ -39,7 +39,9 @@ public class StudentController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public String editStudent(@RequestBody Student student, @PathVariable int id){
-        return studentService.editPerson(student,id);
+        Student stu = new Student(student.getFirstName(),student.getLastName(),
+                student.getUserName(),student.getPassword(),student.getRole(),student.getId(),student.getEmail());
+        return studentService.editPerson(stu,id);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -54,7 +56,7 @@ public class StudentController {
         List<Person> list = studentService.getFacultyList();
 
         for(Person student: list){
-            if(student.getRole().equals("ROLE_STUDENT")){
+            if(student.getRole().equals("ROLE_STUDENT")&& list != null){
                 students.add(student);
             }
         }
