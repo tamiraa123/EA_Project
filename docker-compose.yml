@@ -1,0 +1,28 @@
+version: "2.3"
+services:
+  db:
+    image: mysql:latest
+    volumes:
+      - /opt/mysql_data:/var/lib/mysql
+#        source: ./database
+#        target: /docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=cs544
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+    ports:
+      - "3306:3306"
+    restart: always
+  web:
+    image: docker-spring-bootv2.jar
+    depends_on:
+      - db
+    ports:
+      - 8085:8085
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=root
+      - DATABASE_NAME=cs544
+      - DATABASE_PORT=3306

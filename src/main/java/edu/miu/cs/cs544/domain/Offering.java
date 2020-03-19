@@ -18,7 +18,10 @@ public class Offering {
     @ManyToOne
     @JoinColumn(name="course_id")
     private Course course;
+<<<<<<< HEAD
+=======
 
+>>>>>>> upstream/master
     @ManyToOne
     @JoinColumn(name="block_id")
     private Block block;
