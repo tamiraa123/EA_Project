@@ -4,6 +4,7 @@ import edu.miu.cs.cs544.domain.*;
 import edu.miu.cs.cs544.service.EnrollmentRecordService;
 import edu.miu.cs.cs544.service.OfferingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,24 +31,24 @@ public class EnrollmentRecordController {
     }
 
     //Student
-    @RequestMapping(value="student/enrollments/{studentId}",method = RequestMethod.GET)
+    @RequestMapping(value="/student/enrollments/{studentId}",method = RequestMethod.GET)
     public List<Enrollment>  getEnrollmentStudent(@PathVariable int studentId)
     {
         return enrollmentRecordService.EnrollmentStudent(studentId);
     }
 
-    @RequestMapping(value="/",method = RequestMethod.POST)
+    @RequestMapping(value="/admin/",method = RequestMethod.POST)
     public String EnrollCourse(@RequestBody EnrollmentRecord enrollmentRecord) {
             return enrollmentRecordService.Enroll(enrollmentRecord);
     }
 
 
-    @RequestMapping(value="/{id}",method = RequestMethod.PATCH)
+    @RequestMapping(value="/admin/{id}",method = RequestMethod.PATCH)
     public void editEnrollCourse(@RequestBody EnrollmentRecord enrollmentRecord,@PathVariable int id) {
         enrollmentRecordService.editEnroll(enrollmentRecord,id);
     }
 
-    @RequestMapping(value="/",method = RequestMethod.DELETE)
+    @RequestMapping(value="/admin/",method = RequestMethod.DELETE)
     public void deleteEnrollCourse(@RequestBody EnrollmentRecord enrollmentRecord) {
         enrollmentRecordService.deleteEnroll(enrollmentRecord);
     }

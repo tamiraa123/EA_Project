@@ -32,15 +32,15 @@ public class CourseController {
         return ResponseEntity.created(location).build();
     }
 
-    @GetMapping
+    @GetMapping("/faculty")
     public Iterable<Course> getAllCourse() {
         return courseService.getAll();
     }
 
-    @DeleteMapping("/{name}")
+    @DeleteMapping("/{id}")
     //@Secured(value = {"ROLE_ADMIN"})
-    public Course deleteCourse(@PathVariable String name) {
-        return courseService.getName(name).map(c -> {
+    public Course deleteCourse(@PathVariable int id) {
+        return courseService.get(id).map(c -> {
             courseService.delete(c);
             return c;
         }).orElse(null);
@@ -55,7 +55,7 @@ public class CourseController {
         return courseService.update(oldCourse);
     }
 
-    @GetMapping("/{name}")
+    @GetMapping("student/{name}")
     public Course getCourse(@PathVariable String name) {
         return courseService.getName(name).orElseThrow(() ->
                 new NoSuchResourceException(name, Course.class));

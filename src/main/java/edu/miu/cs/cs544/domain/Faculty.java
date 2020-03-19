@@ -20,7 +20,7 @@ public class Faculty extends Person{
     public Faculty() {
     }
     public Faculty(String firstName, String lastName, String userName, String password, String role, String title){
-        super(firstName, lastName, userName, password, "FACULTY_ROLE");
+        super(firstName, lastName, userName, password, "ROLE_FACULTY");
         this.title = title;
     }
 
