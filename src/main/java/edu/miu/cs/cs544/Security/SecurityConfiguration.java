@@ -48,6 +48,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable().authorizeRequests()
 
+
                 //.permitAll for access some pages to every one
 //              .antMatchers("/login").permitAll() --> do not check any permission for this api
 
@@ -73,6 +74,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
                 .antMatchers("/sections").hasRole("ADMIN")
                 .antMatchers("/sections/**").hasRole("ADMIN")
+                
+                .antMatchers("/entry").hasRole("ADMIN")
+                .antMatchers("/entry/**").hasRole("ADMIN")
 
                 .antMatchers("/entry").hasRole("ADMIN")
                 .antMatchers("/entry/**").hasRole("ADMIN")
