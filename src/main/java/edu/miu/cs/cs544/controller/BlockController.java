@@ -9,18 +9,14 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/v1")
 public class BlockController {
     @Autowired
     private BlockService blockService;
 
-    @GetMapping("/blocks/{id}")
+    @GetMapping("/block/{id}")
     public Block getBlock(@PathVariable int id) {
         return blockService.getBlock(id);
-    }
-
-    @GetMapping(value = "/blocks/",params = "blockId")
-    public Block getBlock2(@RequestParam int blockId) {
-        return blockService.getBlock(blockId);
     }
 
     @GetMapping("/blocks")
@@ -28,18 +24,19 @@ public class BlockController {
         return blockService.getAllBlocks();
     }
 
-    @PostMapping("/blocks")
-    public void createBlock(@Valid @RequestBody Block block) {
-        blockService.addBlock(block);
+    @PostMapping("/block")
+    public Block createBlock(@Valid @RequestBody Block block) {
+        return blockService.addBlock(block);
     }
 
-    @PutMapping(value = "/blocks/", params = "blockId")
-    public Block editBlock(@Valid @RequestBody Block block, @RequestParam int blockId) {
+    @PutMapping(value = "/block/{blockId}")
+    public Block editBlock(@Valid @RequestBody Block block, @PathVariable int blockId) {
         return blockService.editBlock(block, blockId);
     }
 
-    @DeleteMapping(value = "/blocks/", params = "blockId")
-    public void deleteBlock(@RequestParam int blockId) {
+    @DeleteMapping("/block/{blockId}")
+    public String deleteBlock(@PathVariable int blockId) {
         blockService.deleteBlock(blockId);
+        return "Successfully deleted";
     }
 }

@@ -45,6 +45,36 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .httpBasic().and()
                 .csrf().disable().authorizeRequests()
                 //Match path to role
+              //  .antMatchers("/blocks").hasRole("ADMIN")
+                .antMatchers("/blocks").hasRole("ADMIN")
+                .antMatchers("/blocks/**").hasRole("ADMIN")
+                .antMatchers("/block/**").hasRole("ADMIN")
+                .antMatchers("/block").hasRole("ADMIN")
+
+                .antMatchers("/offering").hasRole("ADMIN")
+                .antMatchers("/offering/**").hasRole("ADMIN")
+
+                .antMatchers("/faculty").hasRole("ADMIN")
+                .antMatchers("/faculty/**").hasRole("ADMIN")
+
+                .antMatchers("/student").hasRole("ADMIN")
+                .antMatchers("/student/**").hasRole("ADMIN")
+
+                .antMatchers("/course").hasRole("ADMIN")
+                .antMatchers("/course/**").hasRole("ADMIN")
+
+                .antMatchers("/sections").hasRole("ADMIN")
+                .antMatchers("/sections/**").hasRole("ADMIN")
+
+                //enrollment
+                .antMatchers("/enrollmentRecord/admin").hasRole("ADMIN")
+                .antMatchers("/enrollmentRecord/admin/**").hasRole("ADMIN")
+
+                .antMatchers(HttpMethod.GET,"/enrollmentRecord/student/**").hasRole("STUDENT")
+                .antMatchers(HttpMethod.GET,"/enrollmentRecord/faculty/**").hasRole("FACULTY")
+//                .antMatchers(HttpMethod.GET ,"/enrollmentRecord/admin").hasAnyRole("STUDENT","ADMIN","FACULTY")
+//                .antMatchers(HttpMethod.POST ,"/enrollmentRecord").hasAnyRole("STUDENT","ADMIN")
+
                 //All pathes to admin
                 .antMatchers("/admin").hasRole("ADMIN_ROLE")
                 .antMatchers("/students").hasAnyRole("STUDENT_ROLE","ADMIN_ROLE")
