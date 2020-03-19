@@ -28,14 +28,14 @@ public class SectionController {
     }
 
     @RequestMapping(value="",method = RequestMethod.POST)
-    public void addSection(@RequestBody Section section)
+    public Section addSection(@RequestBody Section section)
     {
-        sectionService.addSection(section);
+        return sectionService.addSection(section);
     }
     @RequestMapping(value="/{id}",method = RequestMethod.PATCH)
-    public void editSection(@RequestBody Section section,@PathVariable int id)
+    public Section editSection(@RequestBody Section section,@PathVariable int id)
     {
-        sectionService.editSection(section,id);
+        return sectionService.editSection(section,id);
     }
 
     @RequestMapping(value="/",method = RequestMethod.DELETE)
