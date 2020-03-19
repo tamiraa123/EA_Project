@@ -38,7 +38,7 @@ public class EnrollmentRecordController {
     }
 
     @RequestMapping(value="/admin/",method = RequestMethod.POST)
-    public String EnrollCourse(@RequestBody EnrollmentRecord enrollmentRecord) {
+    public EnrollmentRecord EnrollCourse(@RequestBody EnrollmentRecord enrollmentRecord) {
             return enrollmentRecordService.Enroll(enrollmentRecord);
     }
 
