@@ -25,7 +25,6 @@ public class Section {
     @JsonIgnore
     @OneToOne
     @JoinColumn(name="person_id")
-
     private Faculty faculty;
 
     public Section() {
