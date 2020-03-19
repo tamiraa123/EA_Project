@@ -11,15 +11,18 @@ public class Block {
     @GeneratedValue
     private int id;
 
+    //2020-03
     @NotEmpty
     @Pattern(regexp = "[0-9]{4}(-)[0-9]{2}")
     private String code;
 
+    //November 2020
     @NotEmpty
     @Pattern(regexp = "^[a-zA-Z]+\\s[0-9]{4}$")
     @Column(unique = true)
     private String name;
 
+    //Spring
     @Pattern(regexp = "^[a-zA-Z]+$")
     private String semester;
 
