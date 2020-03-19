@@ -1,6 +1,9 @@
 package edu.miu.cs.cs544.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -19,7 +22,8 @@ public class Student extends Person implements Serializable {
     @JoinColumn(name="address_mail_id")
     private Address mailingAddress;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="entry_id")
     private Entry entry;
 
     @OneToMany(mappedBy = "student",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
@@ -31,8 +35,10 @@ public class Student extends Person implements Serializable {
     }
 
 
+
     public Student(String firstName, String lastName, String userName, String password, String role, int studentId, String email){
         super(firstName, lastName, userName, password, "ROLE_STUDENT");
+
         this.studentId = studentId;
         this.email = email;
         this.homeAddress = homeAddress;
@@ -40,6 +46,7 @@ public class Student extends Person implements Serializable {
         this.entry = entry;
         this.enrollmentRecords = enrollmentRecords;
     }
+
 
 
 

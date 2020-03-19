@@ -6,15 +6,12 @@ import java.util.Optional;
 
 public interface CourseService {
 
-    //Create
+    //Createl
     public Course add(Course course);
 
     //Read
-<<<<<<< HEAD
+
     public Optional<Course> get(int courseId);
-=======
-    public Optional<Course> get(Integer courseId);
->>>>>>> upstream/master
     public Optional<Course> getName(String name);
     public Course getCode(String name);
     public Iterable<Course> getAll();

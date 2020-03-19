@@ -2,6 +2,8 @@ package edu.miu.cs.cs544.domain;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -10,6 +12,7 @@ import java.util.List;
 
 public class Entry {
     @Id
+    @GeneratedValue
     private int id;
     private String name;
     @Temporal(TemporalType.DATE)
@@ -19,10 +22,18 @@ public class Entry {
     @Temporal(TemporalType.DATE)
     private Date enrollmentEndDate;
 
+    @JsonIgnore
     @OneToMany(mappedBy="entry")
     private List<Student> students;
 
     public Entry() {
+    }
+
+    public Entry(int id, String name, Date startDate, Date enrollmentStartDate, Date enrollmentEndDate){
+        this.name = name;
+        this.startDate = startDate;
+        this.enrollmentStartDate = enrollmentStartDate;
+        this.enrollmentEndDate = enrollmentEndDate;
     }
 
     public int getId() {
@@ -33,9 +44,7 @@ public class Entry {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
     public void setName(String name) {
         this.name = name;
