@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-@EnableSwagger2
+
 @SpringBootApplication
 @EnableJpaRepositories("edu.miu.cs.cs544.repository")
 @EntityScan("edu.miu.cs.cs544.domain")

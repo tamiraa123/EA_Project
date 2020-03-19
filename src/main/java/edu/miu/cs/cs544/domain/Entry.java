@@ -29,6 +29,13 @@ public class Entry {
     public Entry() {
     }
 
+    public Entry(int id, String name, Date startDate, Date enrollmentStartDate, Date enrollmentEndDate){
+        this.name = name;
+        this.startDate = startDate;
+        this.enrollmentStartDate = enrollmentStartDate;
+        this.enrollmentEndDate = enrollmentEndDate;
+    }
+
     public int getId() {
         return id;
     }
