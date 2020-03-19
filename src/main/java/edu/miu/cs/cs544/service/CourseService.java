@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface CourseService {
 
-    //Create
+    //Createl
     public Course add(Course course);
 
     //Read

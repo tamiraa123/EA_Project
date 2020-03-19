@@ -18,6 +18,11 @@ public class EnrollmentRecord {
     @ManyToOne(fetch=FetchType.LAZY)
     private Student student;
 
+    public EnrollmentRecord(int id,Section section,Student student) {
+        this.id = id;
+        this.section = section;
+        this.student = student;
+    }
     public EnrollmentRecord() {
     }
 

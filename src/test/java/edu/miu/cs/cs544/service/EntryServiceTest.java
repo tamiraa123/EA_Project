@@ -47,11 +47,11 @@ private EntryService entryService;
 //        Assertions.assertEquals(entryList.get(0), entryService.getEntry(0));
 //    }
 
-    @Test
-    void removeEntry() {
-        entryService.removeEntry(1);
-        verify(entryRepository, times(1)).deleteById(1);
-    }
+//    @Test
+//    void removeEntry() {
+//        entryService.removeEntry(1);
+//        verify(entryRepository, times(1)).deleteById(1);
+//    }
 
     @Test
     void getEntry() {
