@@ -43,9 +43,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     {
         //by using an object of type httpsecurity
 
-        http
-                .cors().and()
-                .csrf().disable().authorizeRequests()
+        http.httpBasic()
+                .and()
 
                 //.permitAll for access some pages to every one
 //              .antMatchers("/login").permitAll() --> do not check any permission for this api
@@ -72,6 +71,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
                 .antMatchers("/sections").hasRole("ADMIN")
                 .antMatchers("/sections/**").hasRole("ADMIN")
+                
+                .antMatchers("/entry").hasRole("ADMIN")
+                .antMatchers("/entry/**").hasRole("ADMIN")
 
                 //enrollment
                 .antMatchers("/enrollmentRecord/admin").hasRole("ADMIN")
