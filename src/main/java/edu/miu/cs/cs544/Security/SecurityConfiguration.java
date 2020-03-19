@@ -54,6 +54,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
               //  .antMatchers("/blocks").hasRole("ADMIN")
                 .antMatchers("/blocks").hasRole("ADMIN")
                 .antMatchers("/blocks/**").hasRole("ADMIN")
+                .antMatchers("/block/**").hasRole("ADMIN")
+                .antMatchers("/block").hasRole("ADMIN")
 
                 .antMatchers("/offering").hasRole("ADMIN")
                 .antMatchers("/offering/**").hasRole("ADMIN")
