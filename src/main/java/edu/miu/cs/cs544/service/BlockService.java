@@ -21,7 +21,7 @@ public class BlockService {
         return blockRepository.findById(blockId).get();
     }
 
-    public List<Block> getBlocksByName(String name) {
+    public Block getBlocksByName(String name) {
         return blockRepository.getBlocksByName(name);
     }
 
