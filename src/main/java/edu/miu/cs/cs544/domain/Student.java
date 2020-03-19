@@ -5,9 +5,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
 @Entity
-public class Student extends Person{
+public class Student extends Person implements Serializable {
 
     private int studentId;
     private String email;
@@ -24,17 +26,29 @@ public class Student extends Person{
     @JoinColumn(name="entry_id")
     private Entry entry;
 
-    @ManyToOne
-    private EnrollmentRecord enrollmentRecords;
+    @OneToMany(mappedBy = "student",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<EnrollmentRecord> enrollmentRecords;
+
 
     public Student() {
 
     }
+
+
+
     public Student(String firstName, String lastName, String userName, String password, String role, int studentId, String email){
-        super(firstName, lastName, userName, password, role);
+        super(firstName, lastName, userName, password, "ROLE_STUDENT");
+
         this.studentId = studentId;
         this.email = email;
+        this.homeAddress = homeAddress;
+        this.mailingAddress = mailingAddress;
+        this.entry = entry;
+        this.enrollmentRecords = enrollmentRecords;
     }
+
+
+
 
     public int getStudentId() {
         return studentId;
@@ -76,11 +90,13 @@ public class Student extends Person{
         this.entry = entry;
     }
 
-    public EnrollmentRecord getEnrollmentRecords() {
+    public List<EnrollmentRecord> getEnrollmentRecords() {
         return enrollmentRecords;
     }
 
-    public void setEnrollmentRecords(EnrollmentRecord enrollmentRecords) {
+    public void setEnrollmentRecords(List<EnrollmentRecord> enrollmentRecords) {
         this.enrollmentRecords = enrollmentRecords;
     }
+
+
 }

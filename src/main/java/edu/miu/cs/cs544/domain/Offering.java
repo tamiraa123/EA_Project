@@ -11,17 +11,29 @@ public class Offering {
     private int id;
     private String code;
 
-    @OneToMany
-    @JoinColumn(name="section_id")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="offering_id")
     private List<Section> sections;
-    @OneToMany
+
+    @ManyToOne
     @JoinColumn(name="course_id")
-    private List<Course> courses;
+    private Course course;
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/master
     @ManyToOne
     @JoinColumn(name="block_id")
     private Block block;
 
     public Offering() {
+    }
+
+    public Offering(int id,String code, Course course, Block block) {
+        this.code = code;
+        this.course = course;
+        this.block = block;
+        this.id = id;
     }
 
     public int getId() {
@@ -48,12 +60,17 @@ public class Offering {
         this.sections = sections;
     }
 
-    public List<Course> getCourses() {
-        return courses;
+    public Course getCourse() {
+        return course;
     }
 
-    public void setCourses(List<Course> courses) {
-        this.courses = courses;
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+
+    public Block getBlocks() {
+        return block;
     }
 
     public Block getBlock() {
