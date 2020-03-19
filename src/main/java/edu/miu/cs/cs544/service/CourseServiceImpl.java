@@ -28,11 +28,8 @@ public class CourseServiceImpl implements CourseService {
 
     //Read
     @Override
-<<<<<<< HEAD
     public Optional<Course> get(int courseId) {
-=======
-    public Optional<Course> get(Integer courseId) {
->>>>>>> upstream/master
+
         return courseRepository.findById(courseId);
     }
     @Override
