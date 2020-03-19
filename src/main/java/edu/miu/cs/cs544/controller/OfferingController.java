@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value="offering")
+//@RequestMapping(value="offering")
 public class OfferingController {
     @Autowired
     private OfferingService offeringService;
@@ -40,7 +40,7 @@ public class OfferingController {
     }
 
     @PutMapping("/offering/{offeringId}/block/{blockId}/course/{courseId}")
-    public String editOfferingBlock(@PathVariable int blockId, int offeringId, int courseId){
+    public String editOfferingBlock(@PathVariable int blockId, @PathVariable int offeringId, @PathVariable int courseId){
 
         Offering o = offeringService.getOffer(offeringId);
         o.setBlock(blockService.getBlock(blockId));
@@ -50,8 +50,9 @@ public class OfferingController {
     }
 
     @DeleteMapping("/offering/{offeringId}")
-    public void deleteOffer(@PathVariable int offeringId) {
+    public String deleteOffer(@PathVariable int offeringId) {
         offeringService.deleteOffering(offeringId);
+        return "Delete is Success";
     }
 
     @GetMapping("/offering/{offeringId}")
@@ -59,7 +60,7 @@ public class OfferingController {
         return offeringService.getOffer(offeringId);
     }
 
-    @GetMapping("/offering")
+    @GetMapping("/offerings")
     public List<Offering> getOffers() {
         return offeringService.getOfferings();
     }
