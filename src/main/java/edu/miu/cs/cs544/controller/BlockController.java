@@ -19,9 +19,19 @@ public class BlockController {
     }
 
     @GetMapping("/blocks")
-    public List<Block> getBlocks(){
+    public List<Block> getAllBlocks(){
         return blockService.getAllBlocks();
     }
+
+//    @GetMapping("/block/{blockName}")
+//    public Block getBlocksByName(@PathVariable String blockName) {
+//        return blockService.getBlocksByName(blockName);
+//    }
+//
+//    @GetMapping("/blocks/{blockCode}")
+//    public List<Block> getBlocksByCode(@PathVariable String blockCode) {
+//        return blockService.getBlocksByCode(blockCode);
+//    }
 
     @PostMapping("/block")
     public Block createBlock(@Valid @RequestBody Block block) {
