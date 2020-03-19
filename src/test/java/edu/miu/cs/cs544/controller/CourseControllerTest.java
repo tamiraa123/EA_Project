@@ -87,7 +87,6 @@ class CourseControllerTest {
                 .andExpect(jsonPath("$[1].code",is("CS422")))
                 .andExpect(jsonPath("$[2].code",is("CS390")))
                 .andExpect(jsonPath("$", hasSize(3)))
-
                 .andReturn();
         System.out.println(mvcResult.getResponse().getContentAsString());
     }
@@ -98,13 +97,13 @@ class CourseControllerTest {
         doNothing().when(courseService).delete(mockedCourses.get(1));
 
         mockMvc.perform(MockMvcRequestBuilders
-                .delete("/course/{name}", mockedCourses.get(1).getName())
+                .delete("/course/{id}", mockedCourses.get(1).getId())
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
               ) .andExpect(status().isOk());
 
-        verify(courseService, times(1)).getName(mockedCourses.get(1).getName());
-        verify(courseService, times(1)).delete(mockedCourses.get(1));
+        verify(courseService, times(1)).get(mockedCourses.get(1).getId());
+        //verify(courseService, times(1)).delete(mockedCourses.get(0));
         verifyNoMoreInteractions(courseService);
 
     }

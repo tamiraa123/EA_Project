@@ -33,7 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     //Use embeded data source
-    DataSource dataSource;
+            DataSource dataSource;
 
     //different API have different access requirements
     @Override
@@ -42,7 +42,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         //by using an object of type httpsecurity
 
         http
-                .cors().and()
+                .httpBasic().and()
                 .csrf().disable().authorizeRequests()
                 //Match path to role
                 //All pathes to admin
@@ -58,7 +58,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                  //in memory users -- In memory Authentication
+                //in memory users -- In memory Authentication
 //                .inMemoryAuthentication()
 //                .withUser("admin")
 //                .password("123")
@@ -75,12 +75,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                        .roles("FACULTY_ROLE")
 //                )
 
-                  //In database Authentication  Java Database Connectivity (JDBC)
-                  //use custom tables for authentication
-        .jdbcAuthentication()
-        .dataSource(dataSource)
-        .usersByUsernameQuery("select user_name, password,enabled  from person where user_name = ?")
-        .authoritiesByUsernameQuery("select user_name,role from person where user_name = ?");
+                //In database Authentication  Java Database Connectivity (JDBC)
+                //use custom tables for authentication
+                .jdbcAuthentication()
+                .dataSource(dataSource)
+                .usersByUsernameQuery("select user_name, password,enabled  from person where user_name = ?")
+                .authoritiesByUsernameQuery("select user_name,role from person where user_name = ?");
     }
 
     @Bean
