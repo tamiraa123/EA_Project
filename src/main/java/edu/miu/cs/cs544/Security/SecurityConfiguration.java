@@ -41,9 +41,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     {
         //by using an object of type httpsecurity
 
-        http
-                .cors().and()
-                .csrf().disable().authorizeRequests()
+        http.httpBasic()
+                .and().csrf().disable().authorizeRequests()
                 //Match path to role
                 //All pathes to admin
                 .antMatchers("/admin").hasRole("ADMIN_ROLE")

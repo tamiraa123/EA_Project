@@ -4,6 +4,7 @@ import edu.miu.cs.cs544.domain.*;
 import edu.miu.cs.cs544.service.EnrollmentRecordService;
 import edu.miu.cs.cs544.service.OfferingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,6 +15,12 @@ public class EnrollmentRecordController {
 
     @Autowired
     EnrollmentRecordService enrollmentRecordService;
+    //login
+    @RequestMapping(value="/login",method = RequestMethod.GET)
+    public String login()
+    {
+        return "Logged In";
+    }
 
     //Admin
     @RequestMapping(value="/admin/enrollments",method = RequestMethod.GET)
@@ -36,8 +43,8 @@ public class EnrollmentRecordController {
         return enrollmentRecordService.EnrollmentStudent(studentId);
     }
 
-    @RequestMapping(value="/",method = RequestMethod.POST)
-    public String EnrollCourse(@RequestBody EnrollmentRecord enrollmentRecord) {
+    @RequestMapping(value="student/",method = RequestMethod.POST)
+    public EnrollmentRecord EnrollCourse(@RequestBody EnrollmentRecord enrollmentRecord) {
             return enrollmentRecordService.Enroll(enrollmentRecord);
     }
 

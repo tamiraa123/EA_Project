@@ -6,9 +6,11 @@ import edu.miu.cs.cs544.domain.EnrollmentStudent;
 import edu.miu.cs.cs544.domain.Faculty;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
-
+@Repository
 public interface EnrollmentRecordRepository extends JpaRepository<EnrollmentRecord, Integer> {
     //Admin
     @Query("select new edu.miu.cs.cs544.domain.Enrollment(b.id,b.code,b.name,b.semester,b.startDate," +

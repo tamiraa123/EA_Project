@@ -21,6 +21,12 @@ public class EnrollmentRecord {
     public EnrollmentRecord() {
     }
 
+    public EnrollmentRecord(int id, Section section,Student student) {
+        this.id = id;
+        this.section = section;
+        this.student = student;
+    }
+
     public int getId() {
         return id;
     }
