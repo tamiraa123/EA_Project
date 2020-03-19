@@ -96,6 +96,7 @@
 			<version>2.2.5.RELEASE</version>
 		</dependency>
 	</dependencies>
+	<packaging>jar</packaging>
 
 	<build>
 		<plugins>
@@ -104,6 +105,8 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>docker-spring-bootv2</finalName>
+
 	</build>
 
 </project>
