@@ -21,6 +21,10 @@ public class SectionController {
     {
        return sectionService.getSections();
     }
+    @RequestMapping(value="/{id}",method = RequestMethod.GET)
+    public Section getSection(@PathVariable int id){
+        return sectionService.getSection(id);
+    }
     @RequestMapping(value="",method = RequestMethod.POST)
     public void addSection(@RequestBody Section section)
     {
@@ -31,7 +35,6 @@ public class SectionController {
     {
         sectionService.editSection(section,id);
     }
-
     @RequestMapping(value="/",method = RequestMethod.DELETE)
     public void getEnrollmentAdmin(@RequestBody Section section)
     {
