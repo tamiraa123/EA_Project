@@ -4,18 +4,23 @@ package edu.miu.cs.cs544.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
-
 public class Course {
     @Id
     @GeneratedValue
     private int id;
+    @NotEmpty
     @Pattern(regexp = "[A-Z]{2}[0-9]{3}")
     private String code;
+    @NotEmpty
+    @Size(min=2, max = 40)
     private String name;
+    @Size(max = 200)
     private String description;
 
     public Course() {

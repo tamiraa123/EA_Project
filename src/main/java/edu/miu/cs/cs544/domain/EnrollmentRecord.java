@@ -1,6 +1,8 @@
 package edu.miu.cs.cs544.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,11 +12,14 @@ public class EnrollmentRecord {
     @GeneratedValue
     private int id;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
     private Section section;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
     private Student student;
+
+    public EnrollmentRecord() {
+    }
 
     public int getId() {
         return id;
@@ -29,6 +34,7 @@ public class EnrollmentRecord {
     }
 
     public void setSection(Section section) {
+
         this.section = section;
     }
 

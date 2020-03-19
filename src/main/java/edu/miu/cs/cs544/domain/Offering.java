@@ -18,11 +18,22 @@ public class Offering {
     @ManyToOne
     @JoinColumn(name="course_id")
     private Course course;
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/master
     @ManyToOne
     @JoinColumn(name="block_id")
     private Block block;
 
     public Offering() {
+    }
+
+    public Offering(int id,String code, Course course, Block block) {
+        this.code = code;
+        this.course = course;
+        this.block = block;
+        this.id = id;
     }
 
     public int getId() {
@@ -49,13 +60,14 @@ public class Offering {
         this.sections = sections;
     }
 
-    public Course getCourses() {
+    public Course getCourse() {
         return course;
     }
 
-    public void setCourses(Course course) {
+    public void setCourse(Course course) {
         this.course = course;
     }
+
 
     public Block getBlocks() {
         return block;
