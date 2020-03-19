@@ -38,7 +38,7 @@ public class SectionController {
         return sectionService.editSection(section,id);
     }
 
-    @RequestMapping(value="/",method = RequestMethod.DELETE)
+    @RequestMapping(value="/admin",method = RequestMethod.DELETE)
     public void getEnrollmentAdmin(@RequestBody Section section)
     {
         sectionService.removeSection(section);

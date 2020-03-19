@@ -6,34 +6,43 @@ import javax.validation.constraints.*;
 import java.util.Date;
 
 @Entity
-
 public class Block {
     @Id
     @GeneratedValue
     private int id;
+
+    //2020-03
     @NotEmpty
     @Pattern(regexp = "[0-9]{4}(-)[0-9]{2}")
     private String code;
 
+    //November 2020
     @NotEmpty
     @Pattern(regexp = "^[a-zA-Z]+\\s[0-9]{4}$")
+    @Column(unique = true)
     private String name;
+
+    //Spring
     @Pattern(regexp = "^[a-zA-Z]+$")
     private String semester;
+
     private int sequenceNumber;
+
     @Temporal(TemporalType.DATE)
     @FutureOrPresent
     private Date startDate;
+
     @Future
     @Temporal(TemporalType.DATE)
     private Date endDate;
+
     public Block() {}
-    public Block(int id, @Pattern(regexp = "[0-9]{4}(-)[0-9]{2}") String code,
-                 @Pattern(regexp = "^[a-zA-Z]+\\s[0-9]{4}$") String name,
-                 @Pattern(regexp = "^[a-zA-Z]+$") String semester,
+    public Block(int id,String code,
+                 String name,
+                 String semester,
                  int sequenceNumber,
-                 @FutureOrPresent Date startDate,
-                 @Future Date endDate) {
+                 Date startDate,
+                 Date endDate) {
         this.id = id;
         this.code = code;
         this.name = name;

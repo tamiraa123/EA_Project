@@ -38,7 +38,6 @@ public class Student extends Person implements Serializable {
 
     public Student(String firstName, String lastName, String userName, String password, String role, int studentId, String email){
         super(firstName, lastName, userName, password, "ROLE_STUDENT");
-
         this.studentId = studentId;
         this.email = email;
         this.homeAddress = homeAddress;

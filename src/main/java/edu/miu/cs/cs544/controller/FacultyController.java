@@ -3,6 +3,7 @@ package edu.miu.cs.cs544.controller;
 import edu.miu.cs.cs544.domain.Faculty;
 import edu.miu.cs.cs544.domain.Person;
 import edu.miu.cs.cs544.domain.Section;
+import edu.miu.cs.cs544.domain.Student;
 import edu.miu.cs.cs544.repository.SectionRepository;
 import edu.miu.cs.cs544.service.PersonService;
 import edu.miu.cs.cs544.service.SectionService;
@@ -24,8 +25,11 @@ public class FacultyController {
     @RequestMapping(value="/{id}", method = RequestMethod.POST)
     public String addFaculty(@RequestBody Faculty faculty,@PathVariable int id) {
         Section section = sectionService.getSection(id);
-        faculty.setSection(section);
-        facultyService.addPerson(faculty);
+
+        Faculty fac = new Faculty(faculty.getFirstName(),faculty.getLastName(),
+                faculty.getUserName(),faculty.getPassword(),faculty.getRole(),faculty.getTitle());
+        fac.setSection(section);
+        facultyService.addPerson(fac);
         return "Success";
     }
 
@@ -51,11 +55,11 @@ public class FacultyController {
         List<Person> list = facultyService.getFacultyList();
 
         for(Person faculty: list){
-                if(faculty.getRole().equals("PROF")){
+                if(faculty.getRole().equals("ROLE_FACULTY")){
                     faculties.add(faculty);
                 }
         }
 
-        return faculties;
+        return list;
     }
 }

@@ -31,7 +31,8 @@ public class Section {
 
     }
 
-    public Section(String code, List<EnrollmentRecord> enrollmentRecords, Faculty faculty) {
+    public Section(int id,String code, List<EnrollmentRecord> enrollmentRecords, Faculty faculty) {
+        this.id = id;
         this.code = code;
         this.enrollmentRecords = enrollmentRecords;
         this.faculty = faculty;

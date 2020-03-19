@@ -40,15 +40,25 @@ public class EnrollmentRecordService {
         return enrollmentRecordRepository.EnrollmentViewFaculty(facultyId, blockId);
     }
 
-
     public EnrollmentRecord Enroll(EnrollmentRecord enrollmentRecord) {
+        boolean section = sectionRepository.existsById(enrollmentRecord.getSection().getId());
+        boolean student = studentRepository.existsById(enrollmentRecord.getStudent().getId());
+        if(section==true && student==true)
           return enrollmentRecordRepository.save(enrollmentRecord);
+        return null;
     }
     public void editEnroll(EnrollmentRecord enrollmentRecord,int id) {
+        boolean section = sectionRepository.existsById(enrollmentRecord.getSection().getId());
+        boolean student = studentRepository.existsById(enrollmentRecord.getStudent().getId());
+        boolean enrollment = enrollmentRecordRepository.existsById(id);
+        if(section==true && student==true && enrollment==true){
                 enrollmentRecord.setId(id);
                 enrollmentRecordRepository.save(enrollmentRecord);
+        }
     }
     public void deleteEnroll(EnrollmentRecord enrollmentRecord) {
+        Optional<EnrollmentRecord> enrollment = enrollmentRecordRepository.findById(enrollmentRecord.getId());
+        if(enrollment.isPresent())
             enrollmentRecordRepository.delete(enrollmentRecord);
     }
 }

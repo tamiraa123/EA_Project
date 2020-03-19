@@ -124,17 +124,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authoritiesByUsernameQuery("select person.user_name as username,person.role as role from person where user_name = ?");
     }
 //   //Not encoding password
-    @Bean
-    public PasswordEncoder getPasswordEncoder(){
-        return NoOpPasswordEncoder.getInstance();
-    }
+//    @Bean
+//    public PasswordEncoder getPasswordEncoder(){
+//        return NoOpPasswordEncoder.getInstance();
+//    }
 
 //    //encode password
-//    @Bean
-//    public PasswordEncoder passwordEncoder(){
-//        PasswordEncoder encoder = new BCryptPasswordEncoder();
-//        return encoder;
-//    }
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+        return encoder;
+    }
     //Method security
     public class MethodSecurityConfig extends GlobalMethodSecurityConfiguration {
     }

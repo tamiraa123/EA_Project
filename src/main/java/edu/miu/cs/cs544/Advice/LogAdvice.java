@@ -1,4 +1,4 @@
-package edu.miu.cs.cs544.Advice;
+package edu.miu.cs.cs544.advice;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
