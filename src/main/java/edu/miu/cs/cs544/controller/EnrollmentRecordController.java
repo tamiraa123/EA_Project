@@ -8,6 +8,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value="enrollmentRecord")
@@ -37,7 +38,7 @@ public class EnrollmentRecordController {
         return enrollmentRecordService.EnrollmentStudent(studentId);
     }
 
-    @RequestMapping(value="/admin/",method = RequestMethod.POST)
+    @RequestMapping(value="/admin",method = RequestMethod.POST)
     public EnrollmentRecord EnrollCourse(@RequestBody EnrollmentRecord enrollmentRecord) {
             return enrollmentRecordService.Enroll(enrollmentRecord);
     }
@@ -48,8 +49,9 @@ public class EnrollmentRecordController {
         enrollmentRecordService.editEnroll(enrollmentRecord,id);
     }
 
-    @RequestMapping(value="/admin/",method = RequestMethod.DELETE)
+    @RequestMapping(value="/admin",method = RequestMethod.DELETE)
     public void deleteEnrollCourse(@RequestBody EnrollmentRecord enrollmentRecord) {
+
         enrollmentRecordService.deleteEnroll(enrollmentRecord);
     }
 }

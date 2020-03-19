@@ -10,6 +10,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface EnrollmentRecordRepository extends JpaRepository<EnrollmentRecord, Integer> {
+
+
     //Admin
     @Query("select new edu.miu.cs.cs544.domain.Enrollment(b.id,b.code,b.name,b.semester,b.startDate," +
             "b.endDate,c.id,c.code,c.name,c.description,f.id,f.title,s.id) " +

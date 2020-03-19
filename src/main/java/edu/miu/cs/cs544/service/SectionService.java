@@ -23,8 +23,12 @@ public class SectionService {
             return sectionRepository.save(section);
         }
         public Section editSection(Section section,int id){
-            section.setId(id);
-            return sectionRepository.save(section);
+            boolean editSection = sectionRepository.existsById(id);
+            if(editSection==true) {
+                section.setId(id);
+                return sectionRepository.save(section);
+            }
+            return null;
         }
         public void removeSection(Section section){
             Optional<Section> deleteSection = sectionRepository.findById(section.getId());

@@ -43,8 +43,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     {
         //by using an object of type httpsecurity
 
-        http
-                .cors().and()
+        http.httpBasic()
+                .and()
                 .csrf().disable().authorizeRequests()
 
                 //.permitAll for access some pages to every one
