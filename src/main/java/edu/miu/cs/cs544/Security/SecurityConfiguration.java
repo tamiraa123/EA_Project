@@ -3,6 +3,7 @@ package edu.miu.cs.cs544.Security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
@@ -21,13 +22,14 @@ import javax.sql.DataSource;
 @EnableGlobalMethodSecurity(
 //        The prePostEnabled property enables Spring Security pre/post annotations
 
-        prePostEnabled = true,
+        prePostEnabled = true
 //        The securedEnabled property determines if the @Secured annotation should be enabled
 
-        securedEnabled = true,
+        //       securedEnabled = true,
 
 //        The jsr250Enabled property allows us to use the @RoleAllowed annotation
-        jsr250Enabled = true)
+        //       jsr250Enabled = true
+)
 
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -42,14 +44,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         //by using an object of type httpsecurity
 
         http
-                .httpBasic().and()
+                .cors().and()
                 .csrf().disable().authorizeRequests()
+
+                //.permitAll for access some pages to every one
+//              .antMatchers("/login").permitAll() --> do not check any permission for this api
+
                 //Match path to role
-              //  .antMatchers("/blocks").hasRole("ADMIN")
+                //  .antMatchers("/blocks").hasRole("ADMIN")
                 .antMatchers("/blocks").hasRole("ADMIN")
                 .antMatchers("/blocks/**").hasRole("ADMIN")
-                .antMatchers("/block/**").hasRole("ADMIN")
+
                 .antMatchers("/block").hasRole("ADMIN")
+                .antMatchers("/block/**").hasRole("ADMIN")
 
                 .antMatchers("/offering").hasRole("ADMIN")
                 .antMatchers("/offering/**").hasRole("ADMIN")
@@ -75,10 +82,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                .antMatchers(HttpMethod.GET ,"/enrollmentRecord/admin").hasAnyRole("STUDENT","ADMIN","FACULTY")
 //                .antMatchers(HttpMethod.POST ,"/enrollmentRecord").hasAnyRole("STUDENT","ADMIN")
 
-                //All pathes to admin
-                .antMatchers("/admin").hasRole("ADMIN_ROLE")
-                .antMatchers("/students").hasAnyRole("STUDENT_ROLE","ADMIN_ROLE")
-                //.permitAll for access some pages to every one
                 .anyRequest().authenticated()
                 .and()
                 //type of login
@@ -88,7 +91,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                //in memory users -- In memory Authentication
+//                 // in memory users -- In memory Authentication
 //                .inMemoryAuthentication()
 //                .withUser("admin")
 //                .password("123")
@@ -103,14 +106,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                        User.withUsername("faculty1")
 //                        .password("123")
 //                        .roles("FACULTY_ROLE")
-//                )
+//                );
 
                 //In database Authentication  Java Database Connectivity (JDBC)
                 //use custom tables for authentication
                 .jdbcAuthentication()
                 .dataSource(dataSource)
-                .usersByUsernameQuery("select user_name, password,enabled  from person where user_name = ?")
-                .authoritiesByUsernameQuery("select user_name,role from person where user_name = ?");
+                .usersByUsernameQuery("select person.user_name as username, person.password as password ,person.enabled as enabled  from person where user_name = ?")
+                .authoritiesByUsernameQuery("select person.user_name as username,person.role as role from person where user_name = ?");
     }
 
     @Bean
