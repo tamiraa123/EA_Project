@@ -1,6 +1,9 @@
 package edu.miu.cs.cs544.domain;
 
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -32,10 +35,12 @@ public class Person {
     }
 
     public Person(String firstName, String lastName, String userName, String password, String role){
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashPassword = passwordEncoder.encode(password);
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
-        this.password = password;
+        this.password = hashPassword;
         this.role = role;
         this.enabled=true;
     }
