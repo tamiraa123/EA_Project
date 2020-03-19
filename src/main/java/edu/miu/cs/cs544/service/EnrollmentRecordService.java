@@ -41,18 +41,8 @@ public class EnrollmentRecordService {
     }
 
 
-    public String Enroll(EnrollmentRecord enrollmentRecord) {
-//        for (EnrollmentRecord enrollment : enrollmentRecord) {
-                try {
-                    enrollmentRecordRepository.save(enrollmentRecord);
-                } catch (Exception ex) {
-                    return "FAIL";
-                }
-//            } else {
-//                return "FAIL";
-//            }
-//        }
-        return "SUCCESS";
+    public EnrollmentRecord Enroll(EnrollmentRecord enrollmentRecord) {
+          return enrollmentRecordRepository.save(enrollmentRecord);
     }
     public void editEnroll(EnrollmentRecord enrollmentRecord,int id) {
                 enrollmentRecord.setId(id);

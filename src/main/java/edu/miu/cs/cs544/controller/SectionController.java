@@ -16,23 +16,23 @@ public class SectionController {
     SectionService sectionService;
 
     //Section
-    @RequestMapping(value="/",method = RequestMethod.GET)
+    @RequestMapping(value="/admin",method = RequestMethod.GET)
     public List<Section> getSections()
     {
        return sectionService.getSections();
     }
-    @RequestMapping(value="",method = RequestMethod.POST)
+    @RequestMapping(value="/admin",method = RequestMethod.POST)
     public void addSection(@RequestBody Section section)
     {
         sectionService.addSection(section);
     }
-    @RequestMapping(value="/{id}",method = RequestMethod.PATCH)
+    @RequestMapping(value="/admin/{id}",method = RequestMethod.PATCH)
     public void editSection(@RequestBody Section section,@PathVariable int id)
     {
         sectionService.editSection(section,id);
     }
 
-    @RequestMapping(value="/",method = RequestMethod.DELETE)
+    @RequestMapping(value="/admin",method = RequestMethod.DELETE)
     public void getEnrollmentAdmin(@RequestBody Section section)
     {
         sectionService.removeSection(section);
