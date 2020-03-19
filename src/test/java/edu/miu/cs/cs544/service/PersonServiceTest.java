@@ -28,7 +28,7 @@ class PersonServiceTest {
 
     @InjectMocks
     private PersonService personService;
-    
+
     @Test
     void getPerson() {
         when(personRepository.findById(Mockito.anyInt())).thenReturn(java.util.Optional.of(personList.get(0)));
