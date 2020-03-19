@@ -26,6 +26,13 @@ public class Offering {
     public Offering() {
     }
 
+    public Offering(int id,String code, Course course, Block block) {
+        this.code = code;
+        this.course = course;
+        this.block = block;
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

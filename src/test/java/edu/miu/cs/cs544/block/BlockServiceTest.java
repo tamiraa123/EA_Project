@@ -1,4 +1,4 @@
-package edu.miu.cs.cs544.enrollmentsystem.block;
+package edu.miu.cs.cs544.block;
 
 import edu.miu.cs.cs544.domain.Block;
 import edu.miu.cs.cs544.repository.BlockRepository;

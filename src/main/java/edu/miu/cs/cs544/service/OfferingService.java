@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OfferingService {
@@ -27,7 +28,9 @@ public class OfferingService {
     }
 
     public void deleteOffering(int id) {
-        offeringRepository.deleteById(id);
+        Optional<Offering> deleteOffering = offeringRepository.findById(id);
+        offeringRepository.delete(deleteOffering.get());
+
     }
 
     public void editOffering(Offering offering) {
