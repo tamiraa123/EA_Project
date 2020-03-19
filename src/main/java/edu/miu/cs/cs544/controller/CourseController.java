@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/course")
+@RequestMapping("/courses")
 public class CourseController {
 
     private CourseService courseService;
@@ -32,7 +32,7 @@ public class CourseController {
         return ResponseEntity.created(location).build();
     }
 
-    @GetMapping
+    @GetMapping("/faculty")
     public Iterable<Course> getAllCourse() {
         return courseService.getAll();
     }
@@ -40,7 +40,7 @@ public class CourseController {
     @DeleteMapping("/{id}")
     //@Secured(value = {"ROLE_ADMIN"})
     public Course deleteCourse(@PathVariable int id) {
-        return courseService.get((long)id).map(c -> {
+        return courseService.get(id).map(c -> {
             courseService.delete(c);
             return c;
         }).orElse(null);
@@ -55,7 +55,7 @@ public class CourseController {
         return courseService.update(oldCourse);
     }
 
-    @GetMapping("/{name}")
+    @GetMapping("student/{name}")
     public Course getCourse(@PathVariable String name) {
         return courseService.getName(name).orElseThrow(() ->
                 new NoSuchResourceException(name, Course.class));

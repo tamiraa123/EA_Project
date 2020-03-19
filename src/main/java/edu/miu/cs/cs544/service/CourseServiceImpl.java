@@ -28,7 +28,7 @@ public class CourseServiceImpl implements CourseService {
 
     //Read
     @Override
-    public Optional<Course> get(Long courseId) {
+    public Optional<Course> get(int courseId) {
         return courseRepository.findById(courseId);
     }
     @Override
@@ -56,7 +56,6 @@ public class CourseServiceImpl implements CourseService {
     //Delete
     @Override
     public void delete(Course course) {
-        courseRepository.deleteById((long)course.getId());
-
+        courseRepository.deleteById(course.getId());
     }
 }

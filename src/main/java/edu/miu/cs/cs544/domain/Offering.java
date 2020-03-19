@@ -18,7 +18,6 @@ public class Offering {
     @ManyToOne
     @JoinColumn(name="course_id")
     private Course course;
-    private List<Course> courses;
     @ManyToOne
     @JoinColumn(name="block_id")
     private Block block;
