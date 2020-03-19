@@ -64,27 +64,7 @@ public class OfferingController {
         return offeringService.getOfferings();
     }
 
-//    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
-//    public String getOffering(@PathVariable Integer id){
-//        offeringService.findOne(id);
-//        return "Success";
-//    }
-//    @RequestMapping(value = "/offerings", method = RequestMethod.GET)
-//    public List<Offering> getOfferingList(){
-//        return offeringService.findAllOffering();
-//    }
-//
-//    @RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)
-//    public String removeOffering(@PathVariable Integer id) {
-//        offeringService.deleteOffering(id);
-//        return "Success";
-//    }
-//
-//    @RequestMapping(path="/{blockId}/{courseId}/{sectionId}", method = RequestMethod.POST)
-//    public void createOffering(@RequestBody Offering offering, @PathVariable Integer blockId,@PathVariable Integer courseId,@PathVariable Integer sectionId) throws Exception{
-//
-//
-//    }
+
 }
 
 
