@@ -29,6 +29,7 @@ public class OfferingController {
 
     @PostMapping("/offering/{bId}/{cId}")
     public Offering register ( @PathVariable int bId, @PathVariable int cId) {
+
         Course c = courseService.get(cId).get();
         Block b = blockService.getBlock(bId);
         Offering offering  = new Offering();
@@ -40,6 +41,7 @@ public class OfferingController {
 
     @PutMapping("/offering/{offeringId}/block/{blockId}/course/{courseId}")
     public String editOfferingBlock(@PathVariable int blockId, int offeringId, int courseId){
+
         Offering o = offeringService.getOffer(offeringId);
         o.setBlock(blockService.getBlock(blockId));
         o.setCourse(courseService.get(courseId).get());
