@@ -2,7 +2,10 @@ package edu.miu.cs.cs544.controller;
 
 import edu.miu.cs.cs544.domain.Faculty;
 import edu.miu.cs.cs544.domain.Person;
+import edu.miu.cs.cs544.domain.Section;
+import edu.miu.cs.cs544.repository.SectionRepository;
 import edu.miu.cs.cs544.service.PersonService;
+import edu.miu.cs.cs544.service.SectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,8 +18,13 @@ public class FacultyController {
     @Autowired
     PersonService facultyService;
 
-    @RequestMapping(value="/", method = RequestMethod.POST)
-    public String addFaculty(@RequestBody Faculty faculty) {
+    @Autowired
+    SectionService sectionService;
+
+    @RequestMapping(value="/{id}", method = RequestMethod.POST)
+    public String addFaculty(@RequestBody Faculty faculty,@PathVariable int id) {
+        Section section = sectionService.getSection(id);
+        faculty.setSection(section);
         facultyService.addPerson(faculty);
         return "Success";
     }

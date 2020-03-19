@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -47,6 +48,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable().authorizeRequests()
 
+
                 //.permitAll for access some pages to every one
 //              .antMatchers("/login").permitAll() --> do not check any permission for this api
 
@@ -72,6 +74,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
                 .antMatchers("/sections").hasRole("ADMIN")
                 .antMatchers("/sections/**").hasRole("ADMIN")
+                
+                .antMatchers("/entry").hasRole("ADMIN")
+                .antMatchers("/entry/**").hasRole("ADMIN")
+
+                .antMatchers("/entry").hasRole("ADMIN")
+                .antMatchers("/entry/**").hasRole("ADMIN")
 
                 //enrollment
                 .antMatchers("/enrollmentRecord/admin").hasRole("ADMIN")
@@ -115,12 +123,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .usersByUsernameQuery("select person.user_name as username, person.password as password ,person.enabled as enabled  from person where user_name = ?")
                 .authoritiesByUsernameQuery("select person.user_name as username,person.role as role from person where user_name = ?");
     }
-
+//   //Not encoding password
     @Bean
     public PasswordEncoder getPasswordEncoder(){
         return NoOpPasswordEncoder.getInstance();
     }
 
+//    //encode password
+//    @Bean
+//    public PasswordEncoder passwordEncoder(){
+//        PasswordEncoder encoder = new BCryptPasswordEncoder();
+//        return encoder;
+//    }
     //Method security
     public class MethodSecurityConfig extends GlobalMethodSecurityConfiguration {
     }

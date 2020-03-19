@@ -10,7 +10,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
 @SpringBootApplication
-
+@EnableSwagger2
 public class EnrollmentsystemApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EnrollmentsystemApplication.class, args);
