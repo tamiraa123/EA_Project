@@ -24,7 +24,7 @@ public class Person {
     private String userName;
     @NotNull
     private String password;
-    @Pattern(regexp="^(STU|PROF|)$", message="invalid code")
+    @Pattern(regexp="^(ROLE_STUDENT|ROLE_FACULTY|)$", message="invalid code")
     private String role;
     private boolean enabled;
 

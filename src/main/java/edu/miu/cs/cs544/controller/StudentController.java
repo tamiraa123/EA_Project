@@ -26,7 +26,9 @@ public class StudentController {
     public String addStudent(@RequestBody Student student, @PathVariable int eId) {
         Entry entry = entryService.getEntry(eId);
         student.setEntry(entry);
-        studentService.addPerson(student);
+        Student stu = new Student(student.getFirstName(),student.getLastName(),
+                student.getUserName(),student.getPassword(),student.getRole(),student.getId(),student.getEmail());
+        studentService.addPerson(stu);
         return "Success";
     }
 
@@ -52,7 +54,7 @@ public class StudentController {
         List<Person> list = studentService.getFacultyList();
 
         for(Person student: list){
-            if(student.getRole().equals("STU")){
+            if(student.getRole().equals("ROLE_STUDENT")){
                 students.add(student);
             }
         }
