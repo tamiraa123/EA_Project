@@ -18,8 +18,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 public class OfferingServiceTest {
@@ -55,17 +56,26 @@ public class OfferingServiceTest {
         MockitoAnnotations.initMocks(this);
     }
     @Test
-    public void testGetBlock() throws Exception {
-        when(offeringRepository.findById(Mockito.anyInt())).thenReturn(java.util.Optional.ofNullable(offerList.get(0)));
+    public void testGetOffer() throws Exception {
+        when(offeringRepository.findById(Mockito.anyInt())).thenReturn(java.util.Optional.of(offerList.get(0)));
         Assertions.assertEquals(offeringService.getOffer(0), offerList.get(0));
     }
 
     @Test
-    public void testGetBlocks() throws  Exception {
+    public void testGetOffers() throws  Exception {
         when(offeringRepository.findAll()).thenReturn(offerList);
         Assertions.assertEquals(offeringService.getOfferings().size(), 2);
     }
-
-
+    @Test
+    public void testAddOffer() throws Exception {
+        when(offeringRepository.save(offerList.get(0))).thenReturn(offerList.get(0));
+        Assertions.assertEquals(offerList.get(0),offeringService.addOffering(offerList.get(0)));
+    }
+    @Test
+    public void testDeleteOffering() throws Exception {
+        when(offeringRepository.findById(Mockito.anyInt())).thenReturn(Optional.of(offerList.get(0)));
+        offeringService.deleteOffering(1);
+        verify(offeringRepository, times(1)).delete(offerList.get(0));
+    }
 }
 
